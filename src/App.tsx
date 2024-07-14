@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Navigate, Link } from "react-router-dom";
+
+import LoginView from "./views/LoginView";
+import HomeView from "./views/HomeView";
+import FoodProfileView from "./views/FoodProfileView";
+import FoodListLocalView from "./views/FoodListLocalView";
+import Redirect from "./components/Redirect";
+import ActivateView from "./views/ActivateView";
+import FoodSubmissionView from "./views/FoodSubmissionView";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+          <Routes>
+              <Route path="/" element={<LoginView />}/>
+              <Route path="login">
+                <Route index={true} element={<LoginView />}/>
+              </Route>
+              <Route path="activate/:id/:token" element={<ActivateView />}/>
+              <Route path="home">
+                <Route index={true} element={<HomeView/>}></Route>
+                <Route path=":id" element={<HomeView/>}></Route>
+              </Route>
+              <Route path="food">
+                <Route index={true} element={<FoodListLocalView/>}></Route>
+                <Route path=":id" element={<FoodProfileView/>}></Route>
+                <Route path=":id/edit" element={<FoodSubmissionView/>}></Route>
+              </Route>
+
+          </Routes>
+        
+      </Router>
     </div>
+    // <div className="App">
+    //   FRONTEND PADRE
+    //   <Suspense fallback={<div>Cargando...</div>}>
+    //     <MiComponente />
+    //   </Suspense>
+    // </div>
   );
 }
 
