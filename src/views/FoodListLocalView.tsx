@@ -1,4 +1,4 @@
-import { Box, Paper } from '@mui/material';
+import { Box, Grid, Paper } from '@mui/material';
 import React from 'react';
 
 import TopBar from '../components/TopBar';
@@ -6,19 +6,12 @@ import FoodListLocal from '../microfrontends/food-profile/FoodListLocal';
 
 export const FoodListLocalView = () => {
   return ( <>
-  
-    <TopBar></TopBar>
-    <Box sx={{
-      display: "grid",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      b: 15
-
-    }}>
-        <h1>Lista alimentos DB local</h1>
+    <Grid container direction="column" justifyContent="flex-start" alignItems="center">
+      <TopBar></TopBar>
+      <h1>Lista alimentos DB local</h1>
+      
       <FoodListLocal></FoodListLocal>
-    </Box>
+    </Grid>
   </>
   )
 }

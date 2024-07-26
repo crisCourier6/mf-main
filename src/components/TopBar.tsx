@@ -126,28 +126,25 @@ const TopBar = () => {
     
 
     return (<>
-        {/* <Box sx={{
-           flexGrow: 1,
-           alignContent: "center",
-           justifyContent: "center"
-        }}> */}
-        <AppBar position="static" sx={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "nowrap",
-          justifyContent: "space-around",
-          alignItems: "center",
-          bgcolor: "secondary.main",
-          color: "primary.main"
-        }}>
-          <Toolbar>
+        <AppBar position="sticky" 
+           sx={{
+          // display: "flex",
+          // flexDirection: "row",
+          // flexWrap: "nowrap",
+          // justifyContent: "space-around",
+          // alignItems: "center",
+           bgcolor: "secondary.main",
+           color: "primary.main",
+           width: "100%"
+           }}
+        >
+          <Toolbar sx={{display: "flex", justifyContent: "space-between" }}>
             <IconButton
               size="small"
               edge="start"
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawerLeft(true)}
-              sx={{ mr: 3 }}
             >
               <MenuIcon fontSize="large"></MenuIcon>
             </IconButton>
@@ -165,7 +162,6 @@ const TopBar = () => {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawerRight(true)}
-              sx={{ ml: 3 }}
             >
               <AccountCircleRoundedIcon fontSize="large"></AccountCircleRoundedIcon>
             </IconButton>

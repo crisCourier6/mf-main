@@ -1,4 +1,4 @@
-import { Box, Paper } from '@mui/material';
+import { Box, Grid, Paper } from '@mui/material';
 import React from 'react';
 import { useParams } from "react-router-dom"
 import TopBar from '../components/TopBar';
@@ -8,18 +8,12 @@ export const FoodSubmissionView = () => {
   const { id } = useParams()
   return ( <>
   
-    <TopBar></TopBar>
-    <Box sx={{
-      display: "grid",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      b: 15
-
-    }}>
+    
+    <Grid container direction="column" justifyContent="flex-start" alignItems="center">
+      <TopBar></TopBar>
       Aqui va el formulario de subir/actualizar info de alimento
 
-    </Box>
+    </Grid>
   </>
   )
 }

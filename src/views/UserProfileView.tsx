@@ -1,21 +1,20 @@
 import { Box, Grid, Paper } from '@mui/material';
 import React from 'react';
-import { useParams } from "react-router-dom"
-import TopBar from '../components/TopBar';
-import { HomeOptions } from '../components/HomeOptions';
 
-export const HomeView = () => {
-  const { id } = useParams()
+import TopBar from '../components/TopBar';
+import UserAccount from '../microfrontends/accounts/UserAccount';
+
+export const UserProfileView = () => {
   return ( <>
   
     
     <Grid container direction="column" justifyContent="flex-start" alignItems="center">
-      <TopBar></TopBar>
-      <HomeOptions></HomeOptions>
-
+      <TopBar></TopBar> 
+       <h1>Mi perfil</h1>
+      <UserAccount></UserAccount>
     </Grid>
   </>
   )
 }
 
-export default HomeView
+export default UserProfileView

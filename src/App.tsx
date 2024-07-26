@@ -9,6 +9,7 @@ import FoodListLocalView from "./views/FoodListLocalView";
 import Redirect from "./components/Redirect";
 import ActivateView from "./views/ActivateView";
 import FoodSubmissionView from "./views/FoodSubmissionView";
+import UserProfileView from "./views/UserProfileView";
 
 function App() {
   return (
@@ -22,12 +23,14 @@ function App() {
               <Route path="activate/:id/:token" element={<ActivateView />}/>
               <Route path="home">
                 <Route index={true} element={<HomeView/>}></Route>
-                <Route path=":id" element={<HomeView/>}></Route>
               </Route>
               <Route path="food">
                 <Route index={true} element={<FoodListLocalView/>}></Route>
                 <Route path=":id" element={<FoodProfileView/>}></Route>
                 <Route path=":id/edit" element={<FoodSubmissionView/>}></Route>
+              </Route>
+              <Route path="users">
+                <Route path=":id" element={<UserProfileView/>}></Route>
               </Route>
 
           </Routes>
