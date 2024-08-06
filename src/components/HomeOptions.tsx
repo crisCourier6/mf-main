@@ -1,16 +1,48 @@
 import React from 'react';
 import { Button, Box} from '@mui/material';
-import { Link } from 'react-router-dom';
-
-
-const serviceList = [["Escanear alimento", "../../icons/barcode_scan.png", "https://192.168.100.6:4002/"], 
-                     ["Buscar alimento", "../../icons/search.png", "/search"], 
-                     ["Mis preferencias", "../../icons/fish-reject.png", "/users/" + window.localStorage.id + "/foodprefs"], 
-                     ["Nutricionistas", "../../icons/expert(1).png", "/experts"], 
-                     ["FOOD LOCAL", "../../icons/expert(1).png", "/food"], 
-                     ["Tiendas saludables", "../../icons/store.png", "/stores"]]
+import { Link, useNavigate } from 'react-router-dom';
+import ScanIcon from "../../public/icons/barcode_scan.png"
+import SearchIcon from "../../public/icons/search.png"
+import FoodPrefsIcon from "../../public/icons/fish-reject.png"
+import ExpertsIcon from "../../public/icons/expert.png"
+import StoresIcon from "../../public/icons/store.png"
+import FoodListIcon from "../../public/icons/food_list.png"
 
 export const HomeOptions = () => {
+  const navigate = useNavigate()
+  
+  const handleScan = () => {
+    window.location.replace("https://192.168.100.6:4002/")
+  }
+
+  const handleSearch = () => {
+    navigate("/search")
+  }
+
+  const handleFoodPrefs = () => {
+    navigate("/users/" + window.localStorage.id + "/food-prefs")
+  }
+
+  const handleExperts = () => {
+    navigate("/experts")
+  }
+
+  const handleStores = () => {
+    navigate("/stores")
+  }
+
+  const handleFoodLocal = () => {
+    navigate("/food")
+  }
+
+  const optionsUser = [
+    {name: "Escanear alimento", function: handleScan, icon: ScanIcon},
+    {name: "Buscar alimento", function: handleSearch, icon: SearchIcon},
+    {name: "Mis preferencias alimenticias", function: handleFoodPrefs, icon: FoodPrefsIcon},
+    {name: "Nutricionistas", function: handleExperts, icon: ExpertsIcon},
+    {name: "Tiendas saludables", function: handleStores, icon: StoresIcon},
+    {name: "Lista local de alimentos", function: handleFoodLocal, icon: FoodListIcon},
+  ]
     return <Box 
     sx={{
       pt: 2,
@@ -22,8 +54,8 @@ export const HomeOptions = () => {
       gap: 4,
       color:"primary.contrastText"
     }}>
-        {serviceList.map((service) => (
-        <Button variant='contained' component={Link} to={service[2]}
+        {optionsUser.map((option) => (
+        <Button variant='contained' onClick={option.function}
         sx={{
           height: "75px",
           width: "70vw",
@@ -40,21 +72,22 @@ export const HomeOptions = () => {
           px: 2,
           textTransform: "none",
           fontSize: 16,
+          fontWeight: "bold",
           "&:hover":{
             border: "3px solid",
             bordercolor: "secondary.contrastText",
             bgcolor: "secondary.main"
           }
         }}>
-            {service[0]}
+            {option.name}
           <Box
             component="img"
             sx={{
               height: 60,
               maxHeight: { xs: 40, md: 167 },
             }}
-            alt="EyesFood logo"
-            src={service[1]}
+            alt={option.name}
+            src={option.icon}
           />
         </Button>
       ))}

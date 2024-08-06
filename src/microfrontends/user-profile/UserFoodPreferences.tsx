@@ -1,16 +1,16 @@
 import React, { Suspense, lazy } from "react";
 
 // @ts-ignore
-const MFFoodProfile = lazy(() => import("MFFOOD/FoodProfile"))
+const MFUserFoodPreferences = lazy(() => import("MFUSER/UserFoodPreferences"))
 
-const FoodProfile = () => {
+const UserFoodPreferences = () => {
     return (
         <div>
             <Suspense fallback={<div>Cargando...</div>}>
-                <MFFoodProfile />
+                <MFUserFoodPreferences />
             </Suspense>
         </div>
     )
 }
 
-export default FoodProfile
+export default UserFoodPreferences

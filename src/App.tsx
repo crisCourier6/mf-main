@@ -9,7 +9,8 @@ import FoodListLocalView from "./views/FoodListLocalView";
 import Redirect from "./components/Redirect";
 import ActivateView from "./views/ActivateView";
 import FoodSubmissionView from "./views/FoodSubmissionView";
-import UserProfileView from "./views/UserProfileView";
+import UserProfileView from "./views/user-profile/UserProfileView";
+import UserFoodPrefsView from "./views/user-profile/UserFoodPrefsView";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               </Route>
               <Route path="users">
                 <Route path=":id" element={<UserProfileView/>}></Route>
+                <Route path=":id/food-prefs" element={<UserFoodPrefsView/>}></Route>
               </Route>
 
           </Routes>

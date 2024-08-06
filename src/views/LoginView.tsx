@@ -3,6 +3,7 @@ import { Box, Tabs, Tab } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Login from '../microfrontends/accounts/Login';
 import Register from '../microfrontends/accounts/Register';
+import GoogleAuth from '../microfrontends/accounts/GoogleAuth';
 import Logo from "../../public/EyesFoodBetaLogo.png"
 
 interface TabPanelProps {
@@ -70,6 +71,7 @@ export const LoginView = () => {
         <CustomTabPanel value={value} index={1}>
           <Register></Register>
         </CustomTabPanel>
+        <GoogleAuth></GoogleAuth>
       </Box> 
     )
 }

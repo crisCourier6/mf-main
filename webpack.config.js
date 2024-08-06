@@ -3,16 +3,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
         const { dependencies } = require("./package.json");
 const { hostname } = require("os");
 const { Output } = require("@mui/icons-material");
+require("dotenv").config()
         
         module.exports = {
           output: {
-            publicPath: "http://192.168.100.6:4000/", // Necesario para rutas anidadas (/path/nested-path)
+            publicPath: "http://" + process.env.REACT_APP_BASE_URL + ":" + process.env.REACT_APP_PORT + "/", // Necesario para rutas anidadas (/path/nested-path)
           },
           entry: "./src/entry",
           mode: "development",
           devServer: {
-            port: 4000, // Puerto donde se levanta la app
-            host: "192.168.100.6",
+            port: process.env.REACT_APP_PORT, // Puerto donde se levanta la app
+            host: process.env.REACT_APP_BASE_URL,
             historyApiFallback: true, // Necesario para que funcione React Router
           },
           module: {
@@ -65,7 +66,8 @@ const { Output } = require("@mui/icons-material");
               name: "EyesFood", // Aqui se define el nombre de la aplicación
               remotes: {
                 MFACC: "mf_accounts@http://192.168.100.6:4001/remoteEntry.js", // Nombre de la aplicación hijo + @http://ip-MF-Hijo:puerto-MF-Hijo/RemoteEntry.js
-                MFFOOD: "mf_food_profile@http://192.168.100.6:4003/remoteEntry.js"
+                MFFOOD: "mf_food_profile@http://192.168.100.6:4003/remoteEntry.js",
+                MFUSER: "mf_user_profile@http://192.168.100.6:4004/remoteEntry.js"
               },
               shared: {
                 ...dependencies, // other dependencies

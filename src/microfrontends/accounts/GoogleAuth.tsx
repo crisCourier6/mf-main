@@ -1,16 +1,16 @@
 import React, { Suspense, lazy } from "react";
 
 // @ts-ignore
-const MFFoodProfile = lazy(() => import("MFFOOD/FoodProfile"))
+const MFGoogleAuth = lazy(() => import("MFACC/GoogleAuth"))
 
-const FoodProfile = () => {
+const GoogleAuth = () => {
     return (
         <div>
             <Suspense fallback={<div>Cargando...</div>}>
-                <MFFoodProfile />
+                <MFGoogleAuth />
             </Suspense>
         </div>
     )
 }
 
-export default FoodProfile
+export default GoogleAuth
