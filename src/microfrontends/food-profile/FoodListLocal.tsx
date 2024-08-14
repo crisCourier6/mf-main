@@ -1,12 +1,12 @@
 import React, { Suspense, lazy } from "react";
-
+import { CircularProgress } from "@mui/material";
 // @ts-ignore
 const MFFoodListLocal = lazy(() => import("MFFOOD/FoodListLocal"))
 
 const FoodListLocal = () => {
     return (
         <div>
-            <Suspense fallback={<div>Cargando...</div>}>
+            <Suspense fallback={<CircularProgress/>}>
                 <MFFoodListLocal />
             </Suspense>
         </div>

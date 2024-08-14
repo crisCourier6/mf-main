@@ -1,13 +1,13 @@
 import React, { Suspense, lazy } from "react";
-
+import { CircularProgress } from "@mui/material";
 // @ts-ignore
 const MFFoodProfile = lazy(() => import("MFFOOD/FoodProfile"))
 
-const FoodProfile = () => {
+const FoodProfile: React.FC<{ isAppBarVisible: boolean }> = ({ isAppBarVisible }) => {
     return (
         <div>
-            <Suspense fallback={<div>Cargando...</div>}>
-                <MFFoodProfile />
+            <Suspense fallback={<CircularProgress/>}>
+                <MFFoodProfile isAppBarVisible={isAppBarVisible}/>
             </Suspense>
         </div>
     )

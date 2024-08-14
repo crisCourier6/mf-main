@@ -2,26 +2,27 @@ import { Box, Grid, Paper, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 import TopBar from '../../components/TopBar';
-import UserFoodPreferences from '../../microfrontends/user-profile/UserFoodPreferences';
+import FoodListMini from '../../microfrontends/food-profile/FoodListMini';
 
 
-export const UserFoodPrefsView = () => {
+export const UserFoodHistoryView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
 
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
+
   return ( <>
   
     
     <Grid container direction="column" 
           justifyContent="flex-start" 
-          alignItems="center">
-      <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
-      <UserFoodPreferences isAppBarVisible={isAppBarVisible}></UserFoodPreferences>
+          alignItems="center" >
+      <TopBar onVisibilityChange={handleAppBarVisibilityChange}/> 
+      <FoodListMini isAppBarVisible={isAppBarVisible}></FoodListMini>
     </Grid>
   </>
   )
 }
 
-export default UserFoodPrefsView
+export default UserFoodHistoryView

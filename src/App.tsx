@@ -11,6 +11,7 @@ import ActivateView from "./views/ActivateView";
 import FoodSubmissionView from "./views/FoodSubmissionView";
 import UserProfileView from "./views/user-profile/UserProfileView";
 import UserFoodPrefsView from "./views/user-profile/UserFoodPrefsView";
+import UserFoodHistoryView from "./views/user-profile/UserFoodHistoryView";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="users">
                 <Route path=":id" element={<UserProfileView/>}></Route>
                 <Route path=":id/food-prefs" element={<UserFoodPrefsView/>}></Route>
+                <Route path=":id/food-history" element={<UserFoodHistoryView/>}></Route>
               </Route>
 
           </Routes>

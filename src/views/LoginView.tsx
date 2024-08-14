@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import { Box, Tabs, Tab, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Login from '../microfrontends/accounts/Login';
 import Register from '../microfrontends/accounts/Register';
@@ -22,8 +22,9 @@ function CustomTabPanel(props: TabPanelProps) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
+      style={{width: "70%", maxWidth: "300px", justifyContent: "center"}}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -44,35 +45,31 @@ export const LoginView = () => {
     setValue(newValue);
   };
 
-    return ( <Box sx={{
-        display: "grid",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 2
-
-      }}>
-        <Box
-          component="img"
-          sx={{
-            width: "auto",
-            maxWidth: "40vh",
-          }}
-          alt="EyesFood logo"
-          src={Logo}
-          />
-        <Tabs value={value} onChange={handleChange} >
-          <Tab label="Iniciar sesión" {...a11yProps(0)} />
-          <Tab label="Registrarse" {...a11yProps(1)} />
-        </Tabs>
-        <CustomTabPanel value={value} index={0}>
-          <Login></Login>
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
-          <Register></Register>
-        </CustomTabPanel>
-        <GoogleAuth></GoogleAuth>
-      </Box> 
+    return ( <><Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
+        
+          <Box
+            component="img"
+            sx={{
+              width: "80vw",
+              maxWidth: "400px",
+              pt: 1
+            }}
+            alt="EyesFood logo"
+            src={Logo}
+            />
+          <Tabs  value={value} onChange={handleChange} >
+            <Tab  label="Iniciar sesión" {...a11yProps(0)}/>
+            <Tab label="Registrarse" {...a11yProps(1)} />
+          </Tabs>
+          <CustomTabPanel value={value} index={0}>
+            <Login></Login>
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1}>
+            <Register></Register>
+          </CustomTabPanel>
+          <GoogleAuth></GoogleAuth>
+      
+      </Grid></>
     )
 }
 

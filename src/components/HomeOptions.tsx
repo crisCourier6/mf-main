@@ -1,12 +1,13 @@
 import React from 'react';
-import { Button, Box} from '@mui/material';
+import { Button, Box, Typography, Grid} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import ScanIcon from "../../public/icons/barcode_scan.png"
 import SearchIcon from "../../public/icons/search.png"
-import FoodPrefsIcon from "../../public/icons/fish-reject.png"
+import FoodPrefsIcon from "../../public/icons/food-prefs.png"
 import ExpertsIcon from "../../public/icons/expert.png"
 import StoresIcon from "../../public/icons/store.png"
 import FoodListIcon from "../../public/icons/food_list.png"
+import { inherits } from 'util';
 
 export const HomeOptions = () => {
   const navigate = useNavigate()
@@ -43,53 +44,37 @@ export const HomeOptions = () => {
     {name: "Tiendas saludables", function: handleStores, icon: StoresIcon},
     {name: "Lista local de alimentos", function: handleFoodLocal, icon: FoodListIcon},
   ]
-    return <Box 
-    sx={{
-      pt: 2,
-      pb: 10,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      px: 2,
-      gap: 4,
-      color:"primary.contrastText"
-    }}>
-        {optionsUser.map((option) => (
-        <Button variant='contained' onClick={option.function}
-        sx={{
-          height: "75px",
-          width: "70vw",
-          maxWidth: "300px",
-          borderRadius: "25px",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          border: "3px solid",
-          borderColor: "secondary.main",
-          bgcolor:"secondary.main",
-          color: "secondary.contrastText",
-          px: 2,
-          textTransform: "none",
-          fontSize: 16,
-          fontWeight: "bold",
-          "&:hover":{
-            border: "3px solid",
-            bordercolor: "secondary.contrastText",
-            bgcolor: "secondary.main"
-          }
-        }}>
-            {option.name}
-          <Box
-            component="img"
-            sx={{
-              height: 60,
-              maxHeight: { xs: 40, md: 167 },
-            }}
-            alt={option.name}
-            src={option.icon}
-          />
-        </Button>
-      ))}
-      </Box>
+    return <Grid container display="flex" 
+                flexDirection="row" 
+                justifyContent="space-around"
+                alignItems="stretch"
+                sx={{width: "100vw", maxWidth:"500px", gap:"5px", flexWrap: "wrap", pb: 7}}
+            >
+            {optionsUser.map((option) => (
+              <Button variant='dashed' onClick={option.function} 
+              sx={{display: "flex", 
+                  flexDirection: "column", 
+                  alignItems: "center", 
+                  justifyContent: "stretch",
+                  width: "45%", 
+                  fontWeight: "bold",
+              }}
+              > 
+                <Box width="70%">
+                  <Box
+                      component="img"
+                      sx={{
+                        width: "100%"
+                      }}
+                      alt={option.name}
+                      src={option.icon}
+                  />
+                </Box>
+                
+                <Typography fontWeight="bold">
+                    {option.name}
+                </Typography>
+            </Button>
+          ))}
+      </Grid>
 }
