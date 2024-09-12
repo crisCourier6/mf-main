@@ -6,7 +6,6 @@ import { HomeOptions } from '../components/HomeOptions';
 import UserFoodPreferencesMini from '../microfrontends/user-profile/UserFoodPreferencesMini';
 
 export const HomeView = () => {
-  const { id } = useParams()
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
 
   const handleAppBarVisibilityChange = (visible: boolean) => {
@@ -31,7 +30,7 @@ export const HomeView = () => {
     <Grid container direction="column" justifyContent="flex-start" alignItems="center">
       <UserFoodPreferencesMini></UserFoodPreferencesMini>
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
-      <Typography variant='h5' width="90vw" maxWidth="400px" sx={{pt:2}}>
+      <Typography variant='h5' width="90vw" maxWidth="400px" color={"secondary.dark"} sx={{pt:2}}>
         {getGreetingMessage()}
       </Typography>
       <HomeOptions></HomeOptions>

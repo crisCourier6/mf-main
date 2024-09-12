@@ -6,7 +6,6 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import "@fontsource/montserrat/400.css"
 import '@fontsource/righteous/400.css';
-require('dotenv').config();
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
@@ -60,7 +59,7 @@ const baseTheme = createTheme({
     secondary: {
       light: '#dff5c4',
       main: "#b0e971",
-      dark: '#008000',
+      dark: '#79d673',
       contrastText: '#22323f',
     },
     warning: {
@@ -80,10 +79,48 @@ const theme = createTheme({
         color:"warning"
       },
     },
-    
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiInputBase-root': {
+                fontFamily: 'Montserrat',
+          },
+          '& .MuiInputLabel-root': {
+              fontFamily: 'Righteous', 
+          }
+        }
+      }
+    },
     MuiTypography: {
       defaultProps: {
         lineHeight: 1.3,
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: baseTheme.palette.secondary.main, // Replace with your desired hover background color
+            color: baseTheme.palette.secondary.contrastText,           // Replace with your desired hover text color
+          },
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          backgroundColor: baseTheme.palette.primary.light, // Default background color
+          color: baseTheme.palette.primary.dark, // Default text color
+          '&:hover': {
+            backgroundColor: baseTheme.palette.secondary.light, // Background color on hover
+          },
+        },
+        deleteIcon: {
+          color: baseTheme.palette.primary.main, // Delete icon color
+          '&:hover': {
+            color: baseTheme.palette.primary.dark, // Delete icon color on hover
+          },
+        },
       },
     },
     MuiButton: {
@@ -99,7 +136,7 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: baseTheme.palette.primary.contrastText,
               border: "5px dashed",
-              borderColor: baseTheme.palette.secondary.main
+              borderColor: baseTheme.palette.secondary.dark
             }
           },
         },

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button, Box, Typography, Grid} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import ScanIcon from "../../public/icons/barcode_scan.png"
-import SearchIcon from "../../public/icons/search.png"
-import FoodPrefsIcon from "../../public/icons/food-prefs.png"
-import ExpertsIcon from "../../public/icons/expert.png"
-import StoresIcon from "../../public/icons/store.png"
-import FoodListIcon from "../../public/icons/food_list.png"
+import ScannerIcon from '../svgs/ScannerIcon';
+import SearchIcon from '../svgs/SearchIcon';
+import FoodPrefsIcon from '../svgs/FoodPrefsIcon';
+import ExpertIcon from '../svgs/ExpertIcon';
+import StoreIcon from '../svgs/StoreIcon';
+import FoodListIcon from '../svgs/FoodListIcon';
 import { inherits } from 'util';
 
 export const HomeOptions = () => {
@@ -37,12 +37,12 @@ export const HomeOptions = () => {
   }
 
   const optionsUser = [
-    {name: "Escanear alimento", function: handleScan, icon: ScanIcon},
-    {name: "Buscar alimento", function: handleSearch, icon: SearchIcon},
-    {name: "Mis preferencias alimenticias", function: handleFoodPrefs, icon: FoodPrefsIcon},
-    {name: "Nutricionistas", function: handleExperts, icon: ExpertsIcon},
-    {name: "Tiendas saludables", function: handleStores, icon: StoresIcon},
-    {name: "Lista local de alimentos", function: handleFoodLocal, icon: FoodListIcon},
+    {name: "Escanear alimento", function: handleScan, icon: <ScannerIcon width='100%' height= 'auto'/>},
+    {name: "Buscar alimento", function: handleSearch, icon: <SearchIcon width='100%' height= 'auto'/>},
+    {name: "Mis preferencias alimenticias", function: handleFoodPrefs, icon: <FoodPrefsIcon width='100%' height= 'auto'/>},
+    {name: "Nutricionistas", function: handleExperts, icon: <ExpertIcon width='100%' height= 'auto'/>},
+    {name: "Tiendas saludables", function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
+    {name: "Lista local de alimentos", function: handleFoodLocal, icon: <FoodListIcon width='100%' height= 'auto'/>},
   ]
     return <Grid container display="flex" 
                 flexDirection="row" 
@@ -60,18 +60,11 @@ export const HomeOptions = () => {
                   fontWeight: "bold",
               }}
               > 
-                <Box width="70%">
-                  <Box
-                      component="img"
-                      sx={{
-                        width: "100%"
-                      }}
-                      alt={option.name}
-                      src={option.icon}
-                  />
+                <Box width="70%" color="inherit">
+                  {option.icon}
                 </Box>
                 
-                <Typography fontWeight="bold">
+                <Typography color="primary.dark" fontFamily="Montserrat">
                     {option.name}
                 </Typography>
             </Button>

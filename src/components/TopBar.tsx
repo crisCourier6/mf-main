@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from "../../public/EyesFoodBetaLogo.png"
+import Logo from "../../public/EFbeta.png"
 import { 
   Box, List, ListItem, ListItemButton, 
   ListItemIcon, ListItemText, Drawer, AppBar, 
@@ -13,7 +13,13 @@ import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneR
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-
+import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
+import SearchIcon from "../svgs/SearchIcon";
+import ExpertIcon from "../svgs/ExpertIcon";
+import ScannerIcon from "../svgs/ScannerIcon";
+import StoreIcon from "../svgs/StoreIcon";
+import FoodListIcon from "../svgs/FoodListIcon";
+import { useTheme } from "@mui/material/styles";
 
 const HideOnScroll: React.FC<{ onVisibilityChange: (visible: boolean) => 
   void, children: React.ReactElement }> = ({ onVisibilityChange, children }) => {
@@ -82,6 +88,7 @@ const HideOnScroll: React.FC<{ onVisibilityChange: (visible: boolean) =>
 
 
 const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ onVisibilityChange }) => {
+    const theme = useTheme() 
     const navigate = useNavigate()
     const [openRight, setOpenRight] = React.useState(false);
     const [openLeft, setOpenLeft] = React.useState(false);
@@ -143,12 +150,12 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ 
     ]
 
     const optionsApp = [
-      {name: "Inicio", function: handleHome, icon:<HomeRoundedIcon/> },
-      {name: "Escanear alimento", function: handleScan, icon: <AccountCircleRoundedIcon/>},
-      {name: "Buscar alimento", function: handleSearch, icon: <SettingsRoundedIcon/>},
-      {name: "Nutricionistas", function: handleExperts, icon: <NotificationsNoneRoundedIcon/>},
-      {name: "Tiendas", function: handleStores, icon: <LogoutRoundedIcon/>},
-      {name: "Lista local de alimentos", function: handleFood, icon: <LogoutRoundedIcon/>},
+      {name: "Inicio", function: handleHome, icon:<HomeRoundedIcon sx={{fontSize: 32}}/> },
+      {name: "Escanear alimento", function: handleScan, icon: <ScannerIcon width={32} height={32}/>},
+      {name: "Buscar alimento", function: handleSearch, icon: <SearchIcon width={32} height={32}/>},
+      {name: "Nutricionistas", function: handleExperts, icon: <ExpertIcon width={32} height={32}/>},
+      {name: "Tiendas", function: handleStores, icon: <StoreIcon width={32} height={32}/>},
+      {name: "Lista local de alimentos", function: handleFood, icon: <FoodListIcon width={32} height={32}/>},
     ]
 
     const DrawerListUser = (
@@ -243,7 +250,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ 
            height: "50px"
            }}
         >
-          <Toolbar sx={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%" }}>
+          <Toolbar sx={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", height:"50px" }}>
             <IconButton
               size="small"
               edge="start"
@@ -256,7 +263,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ 
             <Box
               component="img"
               sx={{
-                height: "40px",
+                height: "70%",
                 cursor: "pointer"
               }}
               alt="EyesFood logo"

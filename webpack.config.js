@@ -1,11 +1,42 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-        const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-        const { dependencies } = require("./package.json");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { dependencies } = require("./package.json");
 const { hostname } = require("os");
 const { Output } = require("@mui/icons-material");
-require("dotenv").config()
+require('dotenv').config()
+const Dotenv = require('dotenv-webpack');
         
         module.exports = {
+          plugins: [
+            new HtmlWebpackPlugin({
+              template: "./public/index.html",
+            }),
+            new Dotenv(),
+            new ModuleFederationPlugin({
+              name: "EyesFood", // Aqui se define el nombre de la aplicación
+              remotes: {
+                MFACC: "mf_accounts@http://192.168.100.6:4001/remoteEntry.js", // Nombre de la aplicación hijo + @http://ip-MF-Hijo:puerto-MF-Hijo/RemoteEntry.js
+                MFFOOD: "mf_food_profile@http://192.168.100.6:4003/remoteEntry.js",
+                MFUSER: "mf_user_profile@http://192.168.100.6:4004/remoteEntry.js",
+                MFEDIT: "mf_food_edits@http://192.168.100.6:4005/remoteEntry.js",
+                MFDIARY: "mf_food_diary@http://192.168.100.6:4006/remoteEntry.js",
+              },
+              shared: {
+                ...dependencies, // other dependencies
+                react: {
+                  singleton: true,
+                  requiredVersion: dependencies["react"],
+                },
+                "react-dom": {
+                  singleton: true,
+                  requiredVersion: dependencies["react-dom"],
+                },
+                'react-router-dom': {
+                  singleton: true,
+                },
+              },
+            }),
+          ],
           output: {
             publicPath: "http://" + process.env.REACT_APP_BASE_URL + ":" + process.env.REACT_APP_PORT + "/", // Necesario para rutas anidadas (/path/nested-path)
           },
@@ -62,35 +93,12 @@ require("dotenv").config()
               },
             ],
           },
-          plugins: [
-            new HtmlWebpackPlugin({
-              template: "./public/index.html",
-            }),
-            new ModuleFederationPlugin({
-              name: "EyesFood", // Aqui se define el nombre de la aplicación
-              remotes: {
-                MFACC: "mf_accounts@http://192.168.100.6:4001/remoteEntry.js", // Nombre de la aplicación hijo + @http://ip-MF-Hijo:puerto-MF-Hijo/RemoteEntry.js
-                MFFOOD: "mf_food_profile@http://192.168.100.6:4003/remoteEntry.js",
-                MFUSER: "mf_user_profile@http://192.168.100.6:4004/remoteEntry.js"
-              },
-              shared: {
-                ...dependencies, // other dependencies
-                react: {
-                  singleton: true,
-                  requiredVersion: dependencies["react"],
-                },
-                "react-dom": {
-                  singleton: true,
-                  requiredVersion: dependencies["react-dom"],
-                },
-                'react-router-dom': {
-                  singleton: true,
-                },
-              },
-            }),
-          ],
+          
           resolve: {
             extensions: [".js", ".jsx", ".ts", ".tsx"],
           },
           target: "web",
         };
+
+console.log('REACT_APP_PORT:', process.env.REACT_APP_PORT);
+console.log('REACT_APP_BASE_URL:', process.env.REACT_APP_BASE_URL);
