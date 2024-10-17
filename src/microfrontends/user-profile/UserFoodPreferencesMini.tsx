@@ -6,7 +6,7 @@ const MFUserFoodPreferencesMini = lazy(() => import("MFUSER/UserFoodPreferencesM
 const UserFoodPreferencesMini = () => {
     return (
         <div>
-            <Suspense fallback={<CircularProgress/>}>
+            <Suspense>
                 <MFUserFoodPreferencesMini />
             </Suspense>
         </div>

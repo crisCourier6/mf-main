@@ -10,6 +10,8 @@ import '@fontsource/righteous/400.css';
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
+    dark: true
+    inverted:true
   }
 }
 
@@ -47,6 +49,11 @@ const baseTheme = createTheme({
       fontFamily: "Montserrat",
       color: "#425a6c",
       fontSize: "15px"
+    },
+    subtitle2: {
+      fontFamily: "Montserrat",
+      color: "#425a6c",
+      fontSize: "13px"
     }
   },
   palette: {
@@ -79,6 +86,21 @@ const theme = createTheme({
         color:"warning"
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            backgroundColor: baseTheme.palette.secondary.light, // Custom background color for selected items
+            '&:hover': {
+              backgroundColor: baseTheme.palette.secondary.main, // Custom hover background color for selected items
+            },
+          },
+          '&:hover': {
+            backgroundColor: baseTheme.palette.primary.light, // Custom hover background color for non-selected items
+          },
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -90,6 +112,7 @@ const theme = createTheme({
           }
         }
       }
+      
     },
     MuiTypography: {
       defaultProps: {
@@ -137,6 +160,33 @@ const theme = createTheme({
               backgroundColor: baseTheme.palette.primary.contrastText,
               border: "5px dashed",
               borderColor: baseTheme.palette.secondary.dark
+            }
+          },
+        },
+        {
+          props: { variant: "dark" },
+          style: {
+            border: "2px solid",
+            borderColor: baseTheme.palette.secondary.main,
+            backgroundColor: baseTheme.palette.primary.dark,
+            color: baseTheme.palette.secondary.main,
+            "&:hover": {
+              backgroundColor: baseTheme.palette.secondary.main,
+              border: "2px solid",
+              borderColor: baseTheme.palette.secondary.main,
+              color: baseTheme.palette.primary.dark,
+            }
+          },
+        },
+        {
+          props: { variant: "inverted" },
+          style: {
+            backgroundColor: baseTheme.palette.secondary.light,
+            color: baseTheme.palette.secondary.contrastText,
+            "&:hover": {
+              backgroundColor: baseTheme.palette.secondary.main,
+              borderColor: baseTheme.palette.secondary.main,
+              color: baseTheme.palette.primary.dark,
             }
           },
         },

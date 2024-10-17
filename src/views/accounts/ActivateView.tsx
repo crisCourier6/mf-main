@@ -1,8 +1,8 @@
 import { Box, Paper } from '@mui/material';
 import React from 'react';
 import { useParams } from "react-router-dom"
-import Activate from '../microfrontends/accounts/Activate';
-import Logo from "../../public/EyesFoodBetaLogo.png"
+import Activate from '../../microfrontends/accounts/Activate';
+import Logo from "../../../public/EyesFoodBetaLogo.png"
 
 export const ActivateView = () => {
   const { id } = useParams()
@@ -17,8 +17,8 @@ export const ActivateView = () => {
     <Box
       component="img"
       sx={{
-        width: "auto",
-        maxWidth: "40vh",
+        width: "90vw",
+        maxWidth: "300px",
       }}
       alt="EyesFood logo"
       src={Logo}

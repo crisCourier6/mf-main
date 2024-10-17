@@ -1,22 +1,22 @@
 import { Box, Grid, Paper } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios"
+import TopBar from '../../components/TopBar';
+import UserNotifications from '../../microfrontends/notification/UserNotifications';
 
-import TopBar from '../components/TopBar';
-import FoodProfile from '../microfrontends/food-profile/FoodProfile';
-
-export const FoodProfileView = () => {
+export const UserNotificationsView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
-
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
+  
   return ( <>
   <Grid container direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
-      <FoodProfile isAppBarVisible={isAppBarVisible}></FoodProfile>
+        <UserNotifications isAppBarVisible={isAppBarVisible}/>
     </Grid>
   </>
   )
 }
 
-export default FoodProfileView
+export default UserNotificationsView

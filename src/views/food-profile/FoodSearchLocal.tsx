@@ -1,10 +1,10 @@
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-import TopBar from '../components/TopBar';
-import FoodListLocal from '../microfrontends/food-profile/FoodListLocal';
+import TopBar from '../../components/TopBar';
+import FoodSearchLocal from '../../microfrontends/food-profile/FoodSearchLocal';
 
-export const FoodListLocalView = () => {
+export const FoodSearchLocalView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
 
   const handleAppBarVisibilityChange = (visible: boolean) => {
@@ -13,14 +13,14 @@ export const FoodListLocalView = () => {
   return ( <>
     <Grid container direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
-      <Typography variant='h5' width="100%" maxWidth="400px" sx={{py:1}}>
+      {/* <Typography variant='h5' width="100%" maxWidth="400px" sx={{py:1}}>
         Lista de alimentos local
-      </Typography>
+      </Typography> */}
       
-      <FoodListLocal></FoodListLocal>
+      <FoodSearchLocal isAppBarVisible={isAppBarVisible}></FoodSearchLocal>
     </Grid>
   </>
   )
 }
 
-export default FoodListLocalView
+export default FoodSearchLocalView

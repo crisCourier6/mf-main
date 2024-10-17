@@ -1,25 +1,32 @@
 import React, { useCallback } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo from "../../public/EFbeta.png"
 import { 
-  Box, List, ListItem, ListItemButton, 
-  ListItemIcon, ListItemText, Drawer, AppBar, 
-  Toolbar, IconButton, Typography, 
-  Paper, useScrollTrigger, Slide} from "@mui/material";
+  Box, List, ListItem, ListItemButton, ListItemIcon, Drawer, AppBar, 
+  Toolbar, IconButton, Typography, Paper, Slide} from "@mui/material";
 import { useState, useEffect } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import SearchIcon from "../svgs/SearchIcon";
 import ExpertIcon from "../svgs/ExpertIcon";
 import ScannerIcon from "../svgs/ScannerIcon";
 import StoreIcon from "../svgs/StoreIcon";
-import FoodListIcon from "../svgs/FoodListIcon";
 import { useTheme } from "@mui/material/styles";
+import UserNotificationCount from "../microfrontends/notification/UserNotificationCount";
+import AccountIcon from "../svgs/AccountIcon";
+import ArticlesIcon from "../svgs/ArticlesIcon";
+import HistoryIcon from "../svgs/HistoryIcon";
+import FoodPrefsIcon from "../svgs/FoodPrefsIcon";
+import EFLogo from "../svgs/EFLogo";
+
+type Option = {
+  name:string,
+  allowedRoles: string[]
+  function: () => void
+  icon: any
+}
 
 const HideOnScroll: React.FC<{ onVisibilityChange: (visible: boolean) => 
   void, children: React.ReactElement }> = ({ onVisibilityChange, children }) => {
@@ -87,7 +94,7 @@ const HideOnScroll: React.FC<{ onVisibilityChange: (visible: boolean) =>
 };
 
 
-const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ onVisibilityChange }) => {
+const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ onVisibilityChange }) => {
     const theme = useTheme() 
     const navigate = useNavigate()
     const [openRight, setOpenRight] = React.useState(false);
@@ -108,9 +115,8 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ 
     const handleSettings = () => {
       navigate("/users/" + window.localStorage.id + "/settings")
     }
-
     const handleNotif = () => {
-      navigate("/users/" + window.localStorage.id + "/notif")
+      navigate("/users/" + window.localStorage.id + "/notifications")
     }
 
     const handleLogout = () => {
@@ -142,20 +148,42 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ 
       navigate("/food")
     }
 
-    const optionsUser = [
-      {name: "Mi perfil", function: handleProfile, icon: <AccountCircleRoundedIcon/>},
-      {name: "Ajustes", function: handleSettings, icon: <SettingsRoundedIcon/>},
-      {name: "Notificaciones", function: handleNotif, icon: <NotificationsNoneRoundedIcon/>},
-      {name: "Cerrar sesión", function: handleLogout, icon: <LogoutRoundedIcon/>},
-    ]
+    const handleFoodHistory = () => {
+      navigate("/users/" + window.localStorage.id + "/food-history")
+    }
+  
+    const handleStoreCatalogue = () => {
+      navigate("/stores/" + window.localStorage.s_id + "/catalogue")
+    }
+  
+    const handleArticleList = () => {
+      navigate("/articles")
+    }
+    const handleFoodLocal = () => {
+      navigate("/food")
+    }
+    const handleFoodPrefs = () => {
+    navigate("/users/" + window.localStorage.id + "/food-prefs")
+  }
 
-    const optionsApp = [
-      {name: "Inicio", function: handleHome, icon:<HomeRoundedIcon sx={{fontSize: 32}}/> },
-      {name: "Escanear alimento", function: handleScan, icon: <ScannerIcon width={32} height={32}/>},
-      {name: "Buscar alimento", function: handleSearch, icon: <SearchIcon width={32} height={32}/>},
-      {name: "Nutricionistas", function: handleExperts, icon: <ExpertIcon width={32} height={32}/>},
-      {name: "Tiendas", function: handleStores, icon: <StoreIcon width={32} height={32}/>},
-      {name: "Lista local de alimentos", function: handleFood, icon: <FoodListIcon width={32} height={32}/>},
+    const [optionsApp, setOptionsApp] = useState<Option[]>([
+      {name: "Inicio", allowedRoles: ["Core"], function: handleHome, icon:<HomeRoundedIcon sx={{fontSize: 32}}/> },
+      {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='32px' height= '32px'/>},
+      {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width='32px' height= '32px'/>},
+      // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width='32px' height= '32px'/>},
+      {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='32px' height= '32px'/>},
+      {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width='32px' height= '32px'/>},
+      {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='32px' height= '32px'/>},
+      {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width='32px' height= '32px'/>},
+      {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width='32px' height= '32px'/>},
+      // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width='32px' height= '32px'/>},
+      {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width='32px' height= '32px'/>},
+    ])
+
+    const optionsUser = [
+      {name: "Mi perfil", function: handleProfile, icon:<AccountCircleRoundedIcon sx={{fontSize: 32}}/> },
+      {name: "Notificaciones", function: handleNotif, icon: <UserNotificationCount/>},
+      {name: "Cerrar sesión", function: handleLogout, icon: <LogoutRoundedIcon width={32} height={32}/>},
     ]
 
     const DrawerListUser = (
@@ -260,16 +288,20 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void }> = ({ 
             >
               <MenuIcon fontSize="large"></MenuIcon>
             </IconButton>
-            <Box
+            {/* <Box
               component="img"
               sx={{
-                height: "70%",
+                width: "50%",
+                maxWidth: "150px",
                 cursor: "pointer"
               }}
               alt="EyesFood logo"
               src={Logo}
               onClick={handleHome}
-              />
+              /> */}
+            <Box height={"100%"} sx={{display: "flex", alignItems: "center", cursor: "pointer"}} onClick={handleHome}>
+              <EFLogo width={"auto"} height={"70%"}/>
+            </Box>
             <IconButton
               size="small"
               edge="start"

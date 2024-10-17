@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 
 import TopBar from '../../components/TopBar';
 import FoodDiary from '../../microfrontends/food-diary/FoodDiary';
+import FoodDiaryLocal from '../../microfrontends/food-diary/FoodDiaryLocal';
 
 export const FoodDiaryView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
-
+  const googleUser = window.localStorage.getItem("g_auth")
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
@@ -16,8 +17,11 @@ export const FoodDiaryView = () => {
       <Typography variant='h5' width="100%" maxWidth="400px" sx={{py:1}}>
         Diario alimenticio
       </Typography>
+      {googleUser
+        ?<FoodDiary></FoodDiary>
+        :<FoodDiaryLocal></FoodDiaryLocal>
+      }
       
-      <FoodDiary></FoodDiary>
     </Grid>
   </>
   )

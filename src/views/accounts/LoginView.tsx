@@ -1,10 +1,11 @@
 import React from 'react';
 import { Box, Tabs, Tab, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
-import Login from '../microfrontends/accounts/Login';
-import Register from '../microfrontends/accounts/Register';
-import GoogleAuth from '../microfrontends/accounts/GoogleAuth';
-import Logo from "../../public/EyesFoodBetaLogo.png"
+import Login from '../../microfrontends/accounts/Login';
+import Register from '../../microfrontends/accounts/Register';
+import GoogleAuth from '../../microfrontends/accounts/GoogleAuth';
+import Logo from "../../../public/EyesFoodBetaLogo.png"
+import EFLogo from '../../svgs/EFLogo';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -45,18 +46,11 @@ export const LoginView = () => {
     setValue(newValue);
   };
 
-    return ( <><Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
+    return ( <><Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw" marginTop={2}>
         
-          <Box
-            component="img"
-            sx={{
-              width: "80vw",
-              maxWidth: "400px",
-              pt: 1
-            }}
-            alt="EyesFood logo"
-            src={Logo}
-            />
+          <Box width={"90%"} sx={{maxWidth: "300px", display: "flex", alignItems: "center"}}>
+            <EFLogo width={"100%"} height={"auto"}/>
+          </Box>
           <Tabs  value={value} onChange={handleChange} >
             <Tab  label="Iniciar sesión" {...a11yProps(0)}/>
             <Tab label="Registrarse" {...a11yProps(1)} />

@@ -1,13 +1,14 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import Loading from "../../components/Loading";
 // @ts-ignore
 const MFFoodProfile = lazy(() => import("MFFOOD/FoodProfile"))
 
-const FoodProfile: React.FC<{ isAppBarVisible: boolean }> = ({ isAppBarVisible }) => {
+const FoodProfile: React.FC<{ isAppBarVisible: boolean, onReady: ()=>void }> = ({ isAppBarVisible, onReady }) => {
     return (
         <div>
-            <Suspense fallback={<CircularProgress/>}>
-                <MFFoodProfile isAppBarVisible={isAppBarVisible}/>
+            <Suspense>
+                <MFFoodProfile isAppBarVisible={isAppBarVisible} onReady={onReady}/>
             </Suspense>
         </div>
     )

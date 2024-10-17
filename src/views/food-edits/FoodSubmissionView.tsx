@@ -1,8 +1,8 @@
 import { Box, Grid, Paper } from '@mui/material';
 import React, { useState } from 'react';
 import { useParams } from "react-router-dom"
-import TopBar from '../components/TopBar';
-import { HomeOptions } from '../components/HomeOptions';
+import TopBar from '../../components/TopBar';
+import { HomeOptions } from '../../components/HomeOptions';
 
 export const FoodSubmissionView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);

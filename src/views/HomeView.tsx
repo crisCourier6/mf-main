@@ -1,9 +1,10 @@
 import { Box, Grid, Paper, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom"
 import TopBar from '../components/TopBar';
 import { HomeOptions } from '../components/HomeOptions';
 import UserFoodPreferencesMini from '../microfrontends/user-profile/UserFoodPreferencesMini';
+import api from '../api';
 
 export const HomeView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
@@ -11,6 +12,10 @@ export const HomeView = () => {
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
+
+  useEffect(()=>{
+    document.title = "Inicio - EyesFood";
+  },[])
 
   const getGreetingMessage = () => {
     const now = new Date()
@@ -26,6 +31,8 @@ export const HomeView = () => {
       return "Buenas noches " + window.localStorage.name
     }
   }
+  
+  
   return ( <>
     <Grid container direction="column" justifyContent="flex-start" alignItems="center">
       <UserFoodPreferencesMini></UserFoodPreferencesMini>
