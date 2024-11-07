@@ -125,7 +125,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     }
 
     const handleScan = () => {
-      window.location.replace("https://192.168.100.6:4002/")
+      navigate("/scan")
     }
 
     const handleSearch = () => {
