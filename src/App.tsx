@@ -27,6 +27,7 @@ import FoodEditHistoryView from "./views/food-edits/FoodEditHistoryView";
 import UserStatsView from "./views/stats/UserStatsView";
 import StatsDetailsView from "./views/stats/StatsDetailsView";
 import ScannerView from "./views/ScannerView";
+import FoodEditListView from "./views/food-edits/FoodEditListView";
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
                 <Route path=":id" element={<FoodProfileView/>}></Route>
                 <Route path=":id/edit" element={<FoodEditView/>}></Route>
                 <Route path=":id/history" element={<FoodEditHistoryView/>}></Route>
+              </Route>
+              <Route path="food-edits">
+                <Route index={true} element={<FoodEditListView/>}></Route>
               </Route>
               <Route path="users">
                 <Route path=":id" element={<UserProfileView/>}></Route>
