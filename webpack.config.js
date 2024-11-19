@@ -15,15 +15,27 @@ const Dotenv = require('dotenv-webpack');
             new ModuleFederationPlugin({
               name: "EyesFood", // Aqui se define el nombre de la aplicación
               remotes: {
-                MFACC: `mf_accounts@http://localhost:8081/mf-accounts/remoteEntry.js`, // Nombre de la aplicación hijo + @http://ip-MF-Hijo:puerto-MF-Hijo/RemoteEntry.js
-                MFFOOD: "mf_food_profile@http://localhost:8081/mf-food-profile/remoteEntry.js",
-                MFUSER: "mf_user_profile@http://localhost:8081/mf-user-profile/remoteEntry.js",
-                MFEDIT: "mf_food_edits@http://localhost:8081/mf-food-edits/remoteEntry.js",
-                MFDIARY: "mf_food_diary@http://localhost:8081/mf-diary/remoteEntry.js",
-                MFEXPERT: "mf_expert_profile@http://localhost:8081/mf-expert-profile/remoteEntry.js",
-                MFSTORE: "mf_store_profile@http://localhost:8081/mf-store-profile/remoteEntry.js",
-                MFNOTIF: "mf_notification@http://localhost:8081/mf-notification/remoteEntry.js",
-                MFSTATS: "mf_stats@http://localhost:8081/mf-stats/remoteEntry.js",
+                // NGINX
+                // MFACC: `mf_accounts@http://localhost:8081/mf-accounts/remoteEntry.js`, // Nombre de la aplicación hijo + @http://ip-MF-Hijo:puerto-MF-Hijo/RemoteEntry.js
+                // MFFOOD: "mf_food_profile@http://localhost:8081/mf-food-profile/remoteEntry.js",
+                // MFUSER: "mf_user_profile@http://localhost:8081/mf-user-profile/remoteEntry.js",
+                // MFEDIT: "mf_food_edits@http://localhost:8081/mf-food-edits/remoteEntry.js",
+                // MFDIARY: "mf_food_diary@http://localhost:8081/mf-diary/remoteEntry.js",
+                // MFEXPERT: "mf_expert_profile@http://localhost:8081/mf-expert-profile/remoteEntry.js",
+                // MFSTORE: "mf_store_profile@http://localhost:8081/mf-store-profile/remoteEntry.js",
+                // MFNOTIF: "mf_notification@http://localhost:8081/mf-notification/remoteEntry.js",
+                // MFSTATS: "mf_stats@http://localhost:8081/mf-stats/remoteEntry.js",
+
+                //LOCAL
+                MFACC: `mf_accounts@http://${process.env.MF_ACCOUNTS_URL}/remoteEntry.js`, // Nombre de la aplicación hijo + @http://ip-MF-Hijo:puerto-MF-Hijo/RemoteEntry.js
+                MFFOOD: `mf_food_profile@http://${process.env.MF_FOOD_PROFILE_URL}/remoteEntry.js`,
+                MFUSER: `mf_user_profile@http://${process.env.MF_USER_PROFILE_URL}/remoteEntry.js`,
+                MFEDIT: `mf_food_edits@http://${process.env.MF_FOOD_EDIT_URL}/remoteEntry.js`,
+                MFDIARY: `mf_food_diary@http://${process.env.MF_FOOD_DIARY_URL}/remoteEntry.js`,
+                MFEXPERT: `mf_expert_profile@http://${process.env.MF_EXPERTS_URL}/remoteEntry.js`,
+                MFSTORE: `mf_store_profile@http://${process.env.MF_STORES_URL}/remoteEntry.js`,
+                MFNOTIF: `mf_notification@http://${process.env.MF_NOTIFICATIONS_URL}/remoteEntry.js`,
+                MFSTATS: `mf_stats@http://${process.env.MF_STATS_URL}/remoteEntry.js`,
               },
               shared: {
                 ...dependencies, // other dependencies
@@ -42,7 +54,7 @@ const Dotenv = require('dotenv-webpack');
             }),
           ],
           output: {
-            publicPath: "http://localhost:" + process.env.REACT_APP_PORT + "/", // Necesario para rutas anidadas (/path/nested-path)
+            publicPath: "http://" + process.env.REACT_APP_BASE_URL + ":" + process.env.REACT_APP_PORT + "/", // Necesario para rutas anidadas (/path/nested-path)
           },
           entry: "./src/entry",
           mode: "development",

@@ -1,6 +1,12 @@
 import React from 'react';
 
-function HistoryIcon({ width, height, fill="#425a6c" }) {
+interface NoPhotoIconProps {
+  width?: string | number;
+  height?: string | number;
+  fill?: string;
+}
+
+const HistoryIcon: React.FC<NoPhotoIconProps> = ({ width = "256px", height = "256px", fill = "#425a6c" }) => {
   return (
     <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width={width} height={height}>
 	<title>history</title>
