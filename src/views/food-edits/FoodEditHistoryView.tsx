@@ -10,14 +10,13 @@ export const FoodEditHistoryView = () => {
     const handleAppBarVisibilityChange = (visible: boolean) => {
         setIsAppBarVisible(visible);
     };
-    return ( <>
+    return (
     <Grid container direction="column" justifyContent="flex-start" alignItems="center">
         <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
         <FoodEditHistory isAppBarVisible={isAppBarVisible}/>
         
   
     </Grid>
-    </>
     )
 }
 

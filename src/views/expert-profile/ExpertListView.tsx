@@ -15,9 +15,7 @@ export const ExpertListView = () => {
       setIsAppBarVisible(visible);
   };
 
-  return ( <>
-  
-    
+  return ( 
     <Grid container direction="column" 
           justifyContent="flex-start" 
           alignItems="center" >
@@ -25,7 +23,6 @@ export const ExpertListView = () => {
       {!isReady && <Loading/>}
       <ExpertList isAppBarVisible={isAppBarVisible} onReady={handleReady}></ExpertList>
     </Grid>
-  </>
   )
 }
 

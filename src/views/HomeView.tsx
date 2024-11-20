@@ -31,7 +31,7 @@ export const HomeView = () => {
   }
   
   
-  return ( <>
+  return (
     <Grid container direction="column" justifyContent="flex-start" alignItems="center">
       <UserFoodPreferencesMini></UserFoodPreferencesMini>
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
@@ -41,7 +41,6 @@ export const HomeView = () => {
       <HomeOptions></HomeOptions>
 
     </Grid>
-  </>
   )
 }
 

@@ -1,6 +1,5 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
-
 import TopBar from '../../components/TopBar';
 import FoodSearchLocal from '../../microfrontends/food-profile/FoodSearchLocal';
 
@@ -10,7 +9,7 @@ export const FoodSearchLocalView = () => {
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
-  return ( <>
+  return (
     <Grid container direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
       {/* <Typography variant='h5' width="100%" maxWidth="400px" sx={{py:1}}>
@@ -19,7 +18,6 @@ export const FoodSearchLocalView = () => {
       
       <FoodSearchLocal isAppBarVisible={isAppBarVisible}></FoodSearchLocal>
     </Grid>
-  </>
   )
 }
 

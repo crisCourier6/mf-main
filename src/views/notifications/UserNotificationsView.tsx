@@ -9,12 +9,11 @@ export const UserNotificationsView = () => {
       setIsAppBarVisible(visible);
   };
   
-  return ( <>
+  return (
   <Grid container direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
         <UserNotifications isAppBarVisible={isAppBarVisible}/>
     </Grid>
-  </>
   )
 }
 

@@ -28,12 +28,11 @@ export const StoreCatalogueView = () => {
       console.log(error)
     })
   },[])
-  return ( <>
+  return (
   <Grid container direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
         <StoreCatalogue isAppBarVisible={isAppBarVisible} canEditCatalogue={canEditCatalogue}/>
     </Grid>
-  </>
   )
 }
 

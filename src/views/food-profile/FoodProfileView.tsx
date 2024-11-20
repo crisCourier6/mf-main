@@ -44,7 +44,7 @@ export const FoodProfileView = () => {
       setIsReady(true); // Set the state to true when ready
   };
 
-  return ( <>
+  return (
   <Grid container direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
       {!isReady && <Loading/>}
@@ -86,7 +86,6 @@ export const FoodProfileView = () => {
         </Box>
       </Box>
     </Grid>
-  </>
   )
 }
 

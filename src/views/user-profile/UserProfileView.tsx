@@ -14,7 +14,7 @@ export const UserProfileView = () => {
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
-  return ( <>
+  return (
     <Grid container direction="column" 
           justifyContent="flex-start" 
           alignItems="center" sx={{gap:2}}>
@@ -23,7 +23,6 @@ export const UserProfileView = () => {
       <UserAccount isAppBarVisible={isAppBarVisible} onReady={handleReady}/> 
       
     </Grid>
-  </>
   )
 }
 

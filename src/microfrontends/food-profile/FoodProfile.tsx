@@ -1,6 +1,4 @@
-import React, { Suspense, lazy, useState } from "react";
-import { CircularProgress } from "@mui/material";
-import Loading from "../../components/Loading";
+import React, { Suspense, lazy } from "react";
 // @ts-ignore
 const MFFoodProfile = lazy(() => import("MFFOOD/FoodProfile"))
 

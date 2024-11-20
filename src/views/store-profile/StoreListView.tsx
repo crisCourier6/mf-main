@@ -12,16 +12,13 @@ export const StoreListView = () => {
       setIsAppBarVisible(visible);
   };
 
-  return ( <>
-  
-    
+  return (
     <Grid container direction="column" 
           justifyContent="flex-start" 
           alignItems="center" >
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}/> 
       <StoreList isAppBarVisible={isAppBarVisible}></StoreList>
     </Grid>
-  </>
   )
 }
 

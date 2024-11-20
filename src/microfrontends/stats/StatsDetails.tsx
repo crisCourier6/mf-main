@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from "react";
-import { CircularProgress } from "@mui/material";
 // @ts-ignore
 const MFStatsDetails = lazy(() => import("MFSTATS/StatsDetails"))
 

@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Tabs, Tab, Grid } from '@mui/material';
-import { useEffect, useState } from 'react';
 import Login from '../../microfrontends/accounts/Login';
 import Register from '../../microfrontends/accounts/Register';
 import GoogleAuth from '../../microfrontends/accounts/GoogleAuth';
-import Logo from "../../../public/EyesFoodBetaLogo.png"
 import EFLogo from '../../svgs/EFLogo';
 
 interface TabPanelProps {
@@ -46,7 +44,7 @@ export const LoginView = () => {
     setValue(newValue);
   };
 
-    return ( <><Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw" marginTop={2}>
+    return ( <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw" marginTop={2}>
         
           <Box width={"90%"} sx={{maxWidth: "300px", display: "flex", alignItems: "center"}}>
             <EFLogo width={"100%"} height={"auto"}/>
@@ -63,7 +61,7 @@ export const LoginView = () => {
           </CustomTabPanel>
           <GoogleAuth></GoogleAuth>
       
-      </Grid></>
+      </Grid>
     )
 }
 

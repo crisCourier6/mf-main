@@ -6,7 +6,6 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SearchIcon from "../svgs/SearchIcon";
 import ExpertIcon from "../svgs/ExpertIcon";
 import ScannerIcon from "../svgs/ScannerIcon";
@@ -98,7 +97,6 @@ const HideOnScroll: React.FC<{ onVisibilityChange: (visible: boolean) =>
 
 
 const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ onVisibilityChange }) => {
-    const theme = useTheme() 
     const navigate = useNavigate()
     const [openRight, setOpenRight] = React.useState(false);
     const [openLeft, setOpenLeft] = React.useState(false);
@@ -147,9 +145,9 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       navigate("/home")
     }
 
-    const handleFood = () => {
-      navigate("/food")
-    }
+    // const handleFood = () => {
+    //   navigate("/food")
+    // }
 
     const handleFoodHistory = () => {
       navigate("/users/" + window.localStorage.id + "/food-history")
