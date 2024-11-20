@@ -3,15 +3,19 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const { dependencies } = require("./package.json");
 const { hostname } = require("os");
 const { Output } = require("@mui/icons-material");
-require('dotenv').config()
-const Dotenv = require('dotenv-webpack');
-        
+const dotenv = require("dotenv")
+const webpack = require("webpack")
+dotenv.config()
+console.log(process.env.REACT_APP_GATEWAY_URL)
         module.exports = {
           plugins: [
+            new webpack.DefinePlugin({
+              "process.env.REACT_APP_GATEWAY_URL": JSON.stringify(process.env.REACT_APP_GATEWAY_URL),
+              "process.env.REACT_APP_GOOGLE_CLIENT_ID": JSON.stringify(process.env.REACT_APP_GOOGLE_CLIENT_ID)
+            }),
             new HtmlWebpackPlugin({
               template: "./public/index.html",
             }),
-            new Dotenv(),
             new ModuleFederationPlugin({
               name: "EyesFood", // Aqui se define el nombre de la aplicación
               remotes: {

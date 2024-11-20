@@ -1,10 +1,8 @@
 import React from 'react';
-import { Box, Tabs, Tab, Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Grid } from '@mui/material';
+import { useState } from 'react';
 import TopBar from '../../components/TopBar';
-import { useParams } from 'react-router-dom';
 import FoodEditHistory from '../../microfrontends/food-edits/FoodEditHistory';
-
 
 export const FoodEditHistoryView = () => {
     const [isAppBarVisible, setIsAppBarVisible] = useState(true);

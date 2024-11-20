@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import Logo from "../../public/EyesFoodBetaLogo.png"
 import { Paper } from "@mui/material";
 
 // const PageLayout = xcss({

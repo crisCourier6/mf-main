@@ -1,18 +1,17 @@
 import React from 'react';
-import { Box, Tabs, Tab, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ArticleList from '../../microfrontends/expert-profile/ArticleList';
-import Logo from "../../../public/EFbeta.png"
 import TopBar from '../../components/TopBar';
-import axios from 'axios';
+import api from '../../api';
 
 export const ArticleListView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
-  const checkRoleURL = "http://192.168.100.6:8080/users"
+  const checkRoleURL = "/users"
   const [canCreateArticle, setCanCreateArticle] = useState(false)
 
   useEffect(()=>{
-    axios.get(`${checkRoleURL}/${window.localStorage.id}/roles`, 
+    api.get(`${checkRoleURL}/${window.localStorage.id}/roles`, 
       {
         withCredentials: true,
         headers: { Authorization: "Bearer " + window.localStorage.token },

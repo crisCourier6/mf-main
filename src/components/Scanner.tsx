@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import { useState } from "react"
 import { useZxing } from "react-zxing"
 import { Box, Button, Grid, Paper, TextField } from "@mui/material"

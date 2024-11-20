@@ -1,6 +1,5 @@
-import { Box, Grid, Paper } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import axios from "axios"
+import { Grid } from '@mui/material';
+import React, { useState } from 'react';
 import TopBar from '../../components/TopBar';
 import UserNotifications from '../../microfrontends/notification/UserNotifications';
 

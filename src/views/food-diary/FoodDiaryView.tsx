@@ -1,6 +1,5 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
-
 import TopBar from '../../components/TopBar';
 import FoodDiary from '../../microfrontends/food-diary/FoodDiary';
 import FoodDiaryLocal from '../../microfrontends/food-diary/FoodDiaryLocal';

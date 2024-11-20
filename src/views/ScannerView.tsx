@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Scanner } from '../components/Scanner';
 import { Grid } from '@mui/material';
 

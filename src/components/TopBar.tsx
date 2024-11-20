@@ -1,10 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import Logo from "../../public/EFbeta.png"
 import { 
   Box, List, ListItem, ListItemButton, ListItemIcon, Drawer, AppBar, 
   Toolbar, IconButton, Typography, Paper, Slide} from "@mui/material";
-import { useState, useEffect } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -20,6 +18,11 @@ import ArticlesIcon from "../svgs/ArticlesIcon";
 import HistoryIcon from "../svgs/HistoryIcon";
 import FoodPrefsIcon from "../svgs/FoodPrefsIcon";
 import EFLogo from "../svgs/EFLogo";
+import StatsIcon from "../svgs/StatsIcon";
+import DiaryIcon from "../svgs/DiaryIcon";
+import FoodEditIcon from "../svgs/FoodEditIcon";
+import FoodListIcon from "../svgs/FoodListIcon";
+import SubmissionsIcon from "../svgs/SubmissionsIcon";
 
 type Option = {
   name:string,
@@ -112,9 +115,9 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       navigate("/users/" + window.localStorage.id)
     }
 
-    const handleSettings = () => {
-      navigate("/users/" + window.localStorage.id + "/settings")
-    }
+    // const handleSettings = () => {
+    //   navigate("/users/" + window.localStorage.id + "/settings")
+    // }
     const handleNotif = () => {
       navigate("/users/" + window.localStorage.id + "/notifications")
     }
@@ -159,26 +162,82 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     const handleArticleList = () => {
       navigate("/articles")
     }
-    const handleFoodLocal = () => {
-      navigate("/food")
+    // const handleFoodLocal = () => {
+    //   navigate("/food")
+    // }
+  
+    const handleStats = () => {
+      navigate("/stats")
     }
+  
+    const handleFoodDiary = () => {
+      navigate("/users/" + window.localStorage.id + "/food-diary")
+    }
+  
+    const handleFoodEdits = () => {
+      navigate("/users/" + window.localStorage.id + "/food-edits")
+  }
+
     const handleFoodPrefs = () => {
     navigate("/users/" + window.localStorage.id + "/food-prefs")
   }
 
-    const [optionsApp, setOptionsApp] = useState<Option[]>([
-      {name: "Inicio", allowedRoles: ["Core"], function: handleHome, icon:<HomeRoundedIcon sx={{fontSize: 32}}/> },
-      {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='32px' height= '32px'/>},
-      {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width='32px' height= '32px'/>},
-      // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width='32px' height= '32px'/>},
-      {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='32px' height= '32px'/>},
-      {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width='32px' height= '32px'/>},
-      {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='32px' height= '32px'/>},
-      {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width='32px' height= '32px'/>},
-      {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width='32px' height= '32px'/>},
-      // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width='32px' height= '32px'/>},
-      {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width='32px' height= '32px'/>},
-    ])
+  const handleFoodEdit = () => {
+    navigate("/food-edit")
+  }
+
+    const [optionsApp, setOptionsApp] = useState<Option[]>([])
+
+    useEffect(()=>{
+      if (window.localStorage.getItem("e_id")){
+        setOptionsApp(
+          [
+            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
+            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
+            {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <SubmissionsIcon width={32} height= {32}/>},
+            // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width={32} height= {32}/>},
+            {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
+            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={32} height= {32}/>},
+            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={32} height= {32}/>},
+            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={32} height= {32}/>},
+            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={32} height= {32}/>},
+            // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={32} height= {32}/>},
+            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={32} height= {32}/>},
+            // {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={32} height= {32}/>}
+          ]
+        )
+      }
+      else if (window.localStorage.getItem("s_id")){
+        setOptionsApp(
+          [
+            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
+            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
+            {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
+            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={32} height= {32}/>},
+            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={32} height= {32}/>},
+            {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={32} height= {32}/>},
+          ]
+        )
+      }
+      else {
+        setOptionsApp(
+          [
+            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
+            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
+            {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
+            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={32} height= {32}/>},
+            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={32} height= {32}/>},
+            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={32} height= {32}/>},
+            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={32} height= {32}/>},
+            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={32} height= {32}/>},
+            {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={32} height= {32}/>},
+            {name: "Diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={32} height= {32}/>},
+            {name: "Mis Aportes",  allowedRoles: ["Core"], function: handleFoodEdits, icon: <FoodEditIcon width={32} height= {32}/>},
+          ]
+        )
+      }
+  
+    }, [window.localStorage.getItem("id")])
 
     const optionsUser = [
       {name: "Mi perfil", function: handleProfile, icon:<AccountCircleRoundedIcon sx={{fontSize: 32}}/> },

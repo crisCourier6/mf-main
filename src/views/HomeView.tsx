@@ -1,10 +1,8 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom"
 import TopBar from '../components/TopBar';
 import { HomeOptions } from '../components/HomeOptions';
 import UserFoodPreferencesMini from '../microfrontends/user-profile/UserFoodPreferencesMini';
-import api from '../api';
 
 export const HomeView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
@@ -24,7 +22,7 @@ export const HomeView = () => {
     if (hour >= 5 && hour<12){
       return "Buenos días " + window.localStorage.name
     }
-    else if (hour >= 12 && hour<17){
+    else if (hour >= 12 && hour<20){
       return "Buenas tardes " + window.localStorage.name
     }
     else {

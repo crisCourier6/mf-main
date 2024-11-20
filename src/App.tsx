@@ -1,14 +1,12 @@
 import React, { lazy, Suspense } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes, Navigate, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 import LoginView from "./views/accounts/LoginView";
 import HomeView from "./views/HomeView";
 import FoodProfileView from "./views/food-profile/FoodProfileView";
 import FoodListLocalView from "./views/food-profile/FoodListLocalView";
-import Redirect from "./components/Redirect";
 import ActivateView from "./views/accounts/ActivateView";
-import FoodSubmissionView from "./views/food-edits/FoodSubmissionView";
 import UserProfileView from "./views/user-profile/UserProfileView";
 import UserFoodPrefsView from "./views/user-profile/UserFoodPrefsView";
 import UserFoodHistoryView from "./views/user-profile/UserFoodHistoryView";
@@ -49,7 +47,7 @@ function App() {
                 <Route path=":id/edit" element={<FoodEditView/>}></Route>
                 <Route path=":id/history" element={<FoodEditHistoryView/>}></Route>
               </Route>
-              <Route path="food-edits">
+              <Route path="food-edit">
                 <Route index={true} element={<FoodEditListView/>}></Route>
               </Route>
               <Route path="users">
