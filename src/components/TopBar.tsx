@@ -2,7 +2,8 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { 
   Box, List, ListItem, ListItemButton, ListItemIcon, Drawer, AppBar, 
-  Toolbar, IconButton, Typography, Paper, Slide} from "@mui/material";
+  Toolbar, IconButton, Typography, Paper, Slide,
+  Button} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -22,6 +23,7 @@ import DiaryIcon from "../svgs/DiaryIcon";
 import FoodEditIcon from "../svgs/FoodEditIcon";
 import FoodListIcon from "../svgs/FoodListIcon";
 import SubmissionsIcon from "../svgs/SubmissionsIcon";
+import HomeIcon from '@mui/icons-material/Home';
 
 type Option = {
   name:string,
@@ -98,6 +100,10 @@ const HideOnScroll: React.FC<{ onVisibilityChange: (visible: boolean) =>
 
 const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ onVisibilityChange }) => {
     const navigate = useNavigate()
+    const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+    const currentUserName = window.sessionStorage.getItem("name") || window.localStorage.getItem("name")
+    const currentStoreId = window.sessionStorage.getItem("s_id") || window.localStorage.getItem("s_id")
+    const currentExpertId = window.sessionStorage.getItem("e_id") || window.localStorage.getItem("e_id")
     const [openRight, setOpenRight] = React.useState(false);
     const [openLeft, setOpenLeft] = React.useState(false);
 
@@ -110,18 +116,19 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     };
 
     const handleProfile = () => {
-      navigate("/users/" + window.localStorage.id)
+      navigate("/users/" + currentUserId)
     }
 
     // const handleSettings = () => {
     //   navigate("/users/" + window.localStorage.id + "/settings")
     // }
     const handleNotif = () => {
-      navigate("/users/" + window.localStorage.id + "/notifications")
+      navigate("/users/" + currentUserId + "/notifications")
     }
 
     const handleLogout = () => {
         window.localStorage.clear()
+        window.sessionStorage.clear()
         navigate("/login")
     }
 
@@ -150,11 +157,11 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     // }
 
     const handleFoodHistory = () => {
-      navigate("/users/" + window.localStorage.id + "/food-history")
+      navigate("/users/" + currentUserId + "/food-history")
     }
   
     const handleStoreCatalogue = () => {
-      navigate("/stores/" + window.localStorage.s_id + "/catalogue")
+      navigate("/stores/" + currentStoreId + "/catalogue")
     }
   
     const handleArticleList = () => {
@@ -169,15 +176,15 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     }
   
     const handleFoodDiary = () => {
-      navigate("/users/" + window.localStorage.id + "/food-diary")
+      navigate("/users/" + currentUserId + "/food-diary")
     }
   
     const handleFoodEdits = () => {
-      navigate("/users/" + window.localStorage.id + "/food-edits")
+      navigate("/users/" + currentUserId + "/food-edits")
   }
 
     const handleFoodPrefs = () => {
-    navigate("/users/" + window.localStorage.id + "/food-prefs")
+    navigate("/users/" + currentUserId + "/food-prefs")
   }
 
   const handleFoodEdit = () => {
@@ -187,9 +194,10 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     const [optionsApp, setOptionsApp] = useState<Option[]>([])
 
     useEffect(()=>{
-      if (window.localStorage.getItem("e_id")){
+      if (currentExpertId){
         setOptionsApp(
           [
+            {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={32} height= {32}/>},
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
             {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <SubmissionsIcon width={32} height= {32}/>},
@@ -205,9 +213,10 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           ]
         )
       }
-      else if (window.localStorage.getItem("s_id")){
+      else if (currentStoreId){
         setOptionsApp(
           [
+            {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={32} height= {32}/>},
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
             {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
@@ -220,6 +229,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       else {
         setOptionsApp(
           [
+            {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={32} height= {32}/>},
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
             {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
@@ -235,7 +245,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
         )
       }
   
-    }, [window.localStorage.getItem("id")])
+    }, [currentExpertId])
 
     const optionsUser = [
       {name: "Mi perfil", function: handleProfile, icon:<AccountCircleRoundedIcon sx={{fontSize: 32}}/> },
@@ -262,7 +272,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           
         }}>
           <Typography variant="h5" color="primary.contrastText">
-            {window.localStorage.name}
+            {currentUserName}
           </Typography>
           
         </Paper>
@@ -335,16 +345,23 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
            height: "50px"
            }}
         >
-          <Toolbar sx={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", height:"50px" }}>
-            <IconButton
-              size="small"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawerLeft(true)}
-            >
-              <MenuIcon fontSize="large"></MenuIcon>
-            </IconButton>
+          <Toolbar sx={{display: "flex", p:0, flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", height:"50px" }}>
+          <Button
+            onClick={toggleDrawerLeft(true)}
+            size="small"
+            color="inherit"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textTransform: "none",
+              border: "2px"
+            }}
+          >
+            <MenuIcon fontSize="medium" />
+            <Typography variant="subtitle2">Menú</Typography>
+          </Button>
             {/* <Box
               component="img"
               sx={{
@@ -359,15 +376,22 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
             <Box height={"100%"} sx={{display: "flex", alignItems: "center", cursor: "pointer"}} onClick={handleHome}>
               <EFLogo width={"auto"} height={"70%"}/>
             </Box>
-            <IconButton
-              size="small"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
+            <Button
               onClick={toggleDrawerRight(true)}
+              size="small"
+              color="inherit"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textTransform: "none",
+                border: "2px"
+              }}
             >
-              <AccountCircleRoundedIcon fontSize="large"></AccountCircleRoundedIcon>
-            </IconButton>
+              <AccountCircleRoundedIcon fontSize="medium" />
+              <Typography variant="subtitle2">Perfil</Typography>
+            </Button>
             
           </Toolbar>
           <Drawer anchor="right" open={openRight} onClose={toggleDrawerRight(false)}>

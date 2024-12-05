@@ -16,7 +16,7 @@ export const ExpertListView = () => {
   };
 
   return ( 
-    <Grid container direction="column" 
+    <Grid container display="flex" direction="column" 
           justifyContent="flex-start" 
           alignItems="center" >
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}/> 

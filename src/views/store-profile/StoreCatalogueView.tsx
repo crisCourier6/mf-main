@@ -1,3 +1,4 @@
+import React from "react"
 import { Grid} from '@mui/material';
 import { useEffect, useState } from 'react';
 import api from '../../api';
@@ -9,14 +10,16 @@ export const StoreCatalogueView = () => {
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
+  const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
+  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
   const [canEditCatalogue, setCanEditCatalogue] = useState(false)
   const checkRoleURL = "/users"
 
   useEffect(()=>{
-    api.get(`${checkRoleURL}/${window.localStorage.id}/roles`, 
+    api.get(`${checkRoleURL}/${currentUserId}/roles`, 
       {
         withCredentials: true,
-        headers: { Authorization: "Bearer " + window.localStorage.token },
+        headers: { Authorization: "Bearer " + token },
       }
     )
     .then(res => {

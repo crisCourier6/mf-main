@@ -26,9 +26,12 @@ type Option = {
 export const HomeOptions:React.FC= () => {
   const navigate = useNavigate()
   const [allDone, setAllDone] = useState(true)
+  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+  const currentStoreId = window.sessionStorage.getItem("s_id") || window.localStorage.getItem("s_id")
+  const currentExpertId = window.sessionStorage.getItem("e_id") || window.localStorage.getItem("e_id")
   const handleScan = () => {
-    // window.location.href = "https://localhost:4002/"
-    navigate("/scan")
+    window.location.href = "https://192.168.100.6:4002/"
+    // navigate("/scan")
   }
 
   const handleSearch = () => {
@@ -36,7 +39,7 @@ export const HomeOptions:React.FC= () => {
   }
 
   const handleFoodPrefs = () => {
-    navigate("/users/" + window.localStorage.id + "/food-prefs")
+    navigate("/users/" + currentUserId + "/food-prefs")
   }
 
   const handleExperts = () => {
@@ -56,14 +59,14 @@ export const HomeOptions:React.FC= () => {
   // }
   
   const handleProfile = () => {
-    navigate("/users/" + window.localStorage.id)
+    navigate("/users/" + currentUserId)
   }
   const handleFoodHistory = () => {
-    navigate("/users/" + window.localStorage.id + "/food-history")
+    navigate("/users/" + currentUserId + "/food-history")
   }
 
   const handleStoreCatalogue = () => {
-    navigate("/stores/" + window.localStorage.s_id + "/catalogue")
+    navigate("/stores/" + currentStoreId + "/catalogue")
   }
 
   const handleArticleList = () => {
@@ -75,17 +78,17 @@ export const HomeOptions:React.FC= () => {
   }
 
   const handleFoodDiary = () => {
-    navigate("/users/" + window.localStorage.id + "/food-diary")
+    navigate("/users/" + currentUserId + "/food-diary")
   }
 
   const handleFoodEdits = () => {
-    navigate("/users/" + window.localStorage.id + "/food-edits")
+    navigate("/users/" + currentUserId + "/food-edits")
 }
 
   const [optionsUser, setOptionsUser] = useState<Option[]>([])
 
   useEffect(()=>{
-    if (window.localStorage.getItem("e_id")){
+    if (currentExpertId){
       setOptionsUser(
         [
           {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='100%' height= 'auto'/>},
@@ -103,7 +106,7 @@ export const HomeOptions:React.FC= () => {
         ]
       )
     }
-    else if (window.localStorage.getItem("s_id")){
+    else if (currentStoreId){
       setOptionsUser(
         [
           {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='100%' height= 'auto'/>},
@@ -120,20 +123,20 @@ export const HomeOptions:React.FC= () => {
         [
           {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='100%' height= 'auto'/>},
           {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width='100%' height= 'auto'/>},
+          {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width='100%' height= 'auto'/>},
           {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='100%' height= 'auto'/>},
           {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width='100%' height= 'auto'/>},
           {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
           {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width='100%' height= 'auto'/>},
-          {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width='100%' height= 'auto'/>},
-          {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width='100%' height= 'auto'/>},
+          {name: "Mis Aportes",  allowedRoles: ["Core"], function: handleFoodEdits, icon: <FoodEditIcon width={"100%"} height={"auto"}/>},
           {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width='100%' height= 'auto'/>},
           {name: "Diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={"100%"} height={"auto"}/>},
-          {name: "Mis Aportes",  allowedRoles: ["Core"], function: handleFoodEdits, icon: <FoodEditIcon width={"100%"} height={"auto"}/>},
+          {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width='100%' height= 'auto'/>},
         ]
       )
     }
 
-  }, [window.localStorage.getItem("id")])
+  }, [currentExpertId])
   
     return (allDone
             ?<Grid container display="flex" 

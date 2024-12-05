@@ -14,6 +14,8 @@ export const FoodProfileView = () => {
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
+  const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
+  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
   const [canAddAdvice, setCanAddAdvice] = useState(false)
   const [canEditCatalogue, setCanEditCatalogue] = useState(false)
   const checkRoleURL = "/users"
@@ -21,10 +23,10 @@ export const FoodProfileView = () => {
 
 
   useEffect(()=>{
-    api.get(`${checkRoleURL}/${window.localStorage.id}/roles`, 
+    api.get(`${checkRoleURL}/${currentUserId}/roles`, 
       {
         withCredentials: true,
-        headers: { Authorization: "Bearer " + window.localStorage.token },
+        headers: { Authorization: "Bearer " + token },
       }
     )
     .then(res => {

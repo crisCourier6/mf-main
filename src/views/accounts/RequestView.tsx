@@ -1,21 +1,14 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 import RegisterRequest from '../../microfrontends/accounts/RegisterRequest';
-import Logo from "../../../public/EFbeta.png"
+import EFLogo from '../../svgs/EFLogo';
 
 export const RequestView = () => {
-    return ( <Grid container display="flex" flexDirection="column" justifyContent="center" alignItems="center" width="100vw">
+    return ( <Grid container display="flex" flexDirection="column" justifyContent="center" alignItems="center" width="100vw" marginTop={2}>
         
-          <Box
-            component="img"
-            sx={{
-              width: "80vw",
-              maxWidth: "400px",
-              pt: 1
-            }}
-            alt="EyesFood logo"
-            src={Logo}
-            />
+          <Box width={"90%"} sx={{maxWidth: "300px", display: "flex", alignItems: "center"}}>
+            <EFLogo width={"100%"} height={"auto"}/>
+          </Box>
           <RegisterRequest/>
       
       </Grid>

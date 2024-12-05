@@ -5,17 +5,21 @@ import FoodEditList from '../../microfrontends/food-edits/FoodEditList';
 import TopBar from '../../components/TopBar';
 import api from '../../api';
 import Unauthorized from '../../components/Unauthorized';
+import Loading from '../../components/Loading';
 
 export const FoodEditListView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
+  const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
+  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+  const [isReady, setIsReady] = useState(false);
   const checkRoleURL = "/users"
     const [canJudge, setCanJudge] = useState(false)
 
     useEffect(()=>{
-        api.get(`${checkRoleURL}/${window.localStorage.id}/roles`, 
+        api.get(`${checkRoleURL}/${currentUserId}/roles`, 
         {
             withCredentials: true,
-            headers: { Authorization: "Bearer " + window.localStorage.token },
+            headers: { Authorization: "Bearer " + token },
         }
         )
         .then(res => {
@@ -26,6 +30,9 @@ export const FoodEditListView = () => {
         .catch(error => {
         console.log(error)
         })
+        .finally(()=>{
+          setIsReady(true)
+        })
     },[])
 
   const handleAppBarVisibilityChange = (visible: boolean) => {
@@ -33,9 +40,12 @@ export const FoodEditListView = () => {
   };
     return ( <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw">
           <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
-          {canJudge
-        ? <FoodEditList isAppBarVisible={isAppBarVisible}/>
-        : <Unauthorized/>}
+          {isReady 
+          ? (canJudge 
+              ? <FoodEditList isAppBarVisible={isAppBarVisible} /> 
+              : <Unauthorized />) 
+          : <Loading />}
+          
       
       </Grid>
     )

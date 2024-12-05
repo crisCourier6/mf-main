@@ -211,6 +211,15 @@ const theme = createTheme({
         },
       }
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontFamily: 'Montserrat', 
+          fontSize: 14,
+          color: baseTheme.palette.primary.dark
+        },
+      },
+    },
     MuiToggleButton: {
       styleOverrides: {
         root: {

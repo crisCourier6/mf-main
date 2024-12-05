@@ -26,6 +26,9 @@ import UserStatsView from "./views/stats/UserStatsView";
 import StatsDetailsView from "./views/stats/StatsDetailsView";
 import ScannerView from "./views/ScannerView";
 import FoodEditListView from "./views/food-edits/FoodEditListView";
+import PublicRoute from "./components/PublicRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import InvalidRoute from "./components/InvalidRoute";
 
 function App() {
   return (
@@ -34,53 +37,54 @@ function App() {
           <Routes>
               <Route path="/" element={<Navigate to="/login"/>}/>
               <Route path="login">
-                <Route index={true} element={<LoginView />}/>
-                <Route path="request" element={<RequestView/>}/>
+                <Route index={true} element={<PublicRoute><LoginView/></PublicRoute>}/>
+                <Route path="request" element={<PublicRoute><RequestView/></PublicRoute>}/>
               </Route>
-              <Route path="activate/:id/:token" element={<ActivateView />}/>
+              <Route path="activate/:id/:token" element={<PublicRoute><ActivateView /></PublicRoute>}/>
               <Route path="home">
-                <Route index={true} element={<HomeView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><HomeView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="food">
-                <Route index={true} element={<FoodListLocalView/>}></Route>
-                <Route path=":id" element={<FoodProfileView/>}></Route>
-                <Route path=":id/edit" element={<FoodEditView/>}></Route>
-                <Route path=":id/history" element={<FoodEditHistoryView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><FoodListLocalView/></ProtectedRoute>}></Route>
+                <Route path=":id" element={<ProtectedRoute><FoodProfileView/></ProtectedRoute>}></Route>
+                <Route path=":id/edit" element={<ProtectedRoute><FoodEditView/></ProtectedRoute>}></Route>
+                <Route path=":id/history" element={<ProtectedRoute><FoodEditHistoryView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="food-edit">
-                <Route index={true} element={<FoodEditListView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><FoodEditListView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="users">
-                <Route path=":id" element={<UserProfileView/>}></Route>
-                <Route path=":id/food-prefs" element={<UserFoodPrefsView/>}></Route>
-                <Route path=":id/food-history" element={<UserFoodHistoryView/>}></Route>
-                <Route path=":id/food-diary" element={<FoodDiaryView/>}></Route>
-                <Route path=":id/food-edits" element={<FoodEditUserListView/>}></Route>
-                <Route path=":id/notifications" element={<UserNotificationsView/>}></Route>
+                <Route path=":id" element={<ProtectedRoute><UserProfileView/></ProtectedRoute>}></Route>
+                <Route path=":id/food-prefs" element={<ProtectedRoute><UserFoodPrefsView/></ProtectedRoute>}></Route>
+                <Route path=":id/food-history" element={<ProtectedRoute><UserFoodHistoryView/></ProtectedRoute>}></Route>
+                <Route path=":id/food-diary" element={<ProtectedRoute><FoodDiaryView/></ProtectedRoute>}></Route>
+                <Route path=":id/food-edits" element={<ProtectedRoute><FoodEditUserListView/></ProtectedRoute>}></Route>
+                <Route path=":id/notifications" element={<ProtectedRoute><UserNotificationsView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="experts">
-                <Route index={true} element={<ExpertListView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><ExpertListView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="stores">
-                <Route index={true} element={<StoreListView/>}></Route>
-                <Route path=":id/catalogue" element={<StoreCatalogueView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><StoreListView/></ProtectedRoute>}></Route>
+                <Route path=":id/catalogue" element={<ProtectedRoute><StoreCatalogueView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="articles">
-                <Route index={true} element={<ArticleListView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><ArticleListView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="stats">
-                <Route index={true} element={<UserStatsView/>}></Route>
-                <Route path=":id" element={<StatsDetailsView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><UserStatsView/></ProtectedRoute>}></Route>
+                <Route path=":id" element={<ProtectedRoute><StatsDetailsView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="search">
-                <Route index={true} element={<FoodSearchLocalView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><FoodSearchLocalView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="scan">
-                <Route index={true} element={<ScannerView/>}></Route>
+                <Route index={true} element={<ProtectedRoute><ScannerView/></ProtectedRoute>}></Route>
               </Route>
-              <Route path="wait">
+              <Route path="waiting">
                 <Route index={true} element={<Loading/>}></Route>
               </Route>
+              <Route path="*" element={<InvalidRoute />} />
 
           </Routes>
         

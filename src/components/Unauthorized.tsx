@@ -9,8 +9,10 @@ const Unauthorized = () => {
         <Typography variant='h5'>
             No tienes permiso para ver esta página
         </Typography>
-        <Button sx={{maxWidth: "50%"}} variant='contained' onClick={()=>navigate("/home")}>
-            Volver al inicio
+        <Button sx={{maxWidth: "50%"}} onClick={()=>navigate("/home")}>
+          <Typography variant="subtitle1" sx={{textDecoration: "underline"}}>
+              Volver al inicio
+          </Typography>
         </Button>
     </Box>
   );
