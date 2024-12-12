@@ -30,8 +30,12 @@ export const HomeOptions:React.FC= () => {
   const currentStoreId = window.sessionStorage.getItem("s_id") || window.localStorage.getItem("s_id")
   const currentExpertId = window.sessionStorage.getItem("e_id") || window.localStorage.getItem("e_id")
   const handleScan = () => {
-    // window.location.href = "https://192.168.100.6:4002/"
-    navigate("/scan")
+    if (process.env.REACT_APP_SCANNER_URL){
+      window.location.replace(process.env.REACT_APP_SCANNER_URL)
+    }
+    else {
+      navigate("/scan")
+    }
   }
 
   const handleSearch = () => {

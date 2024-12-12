@@ -133,7 +133,12 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     }
 
     const handleScan = () => {
-      navigate("/scan")
+      if (process.env.REACT_APP_SCANNER_URL){
+        window.location.replace(process.env.REACT_APP_SCANNER_URL)
+      }
+      else {
+        navigate("/scan")
+      }
     }
 
     const handleSearch = () => {

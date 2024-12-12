@@ -11,7 +11,8 @@ console.log(process.env.REACT_APP_GATEWAY_URL)
           plugins: [
             new webpack.DefinePlugin({
               "process.env.REACT_APP_GATEWAY_URL": JSON.stringify(process.env.REACT_APP_GATEWAY_URL),
-              "process.env.REACT_APP_GOOGLE_CLIENT_ID": JSON.stringify(process.env.REACT_APP_GOOGLE_CLIENT_ID)
+              "process.env.REACT_APP_GOOGLE_CLIENT_ID": JSON.stringify(process.env.REACT_APP_GOOGLE_CLIENT_ID),
+              "process.env.REACT_APP_SCANNER_URL": JSON.stringify(process.env.REACT_APP_SCANNER_URL)
             }),
             new HtmlWebpackPlugin({
               template: "./public/index.html",
