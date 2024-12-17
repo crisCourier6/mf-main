@@ -29,16 +29,18 @@ import FoodEditListView from "./views/food-edits/FoodEditListView";
 import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import InvalidRoute from "./components/InvalidRoute";
+import ResetPassView from "./views/accounts/ResetPassView";
 
 function App() {
   return (
     <div className="App">
       <Router>
           <Routes>
-              <Route path="/" element={<Navigate to="/login"/>}/>
+              <Route path="/" element={<Navigate to="/login" replace={true}/>}/>
               <Route path="login">
                 <Route index={true} element={<PublicRoute><LoginView/></PublicRoute>}/>
                 <Route path="request" element={<PublicRoute><RequestView/></PublicRoute>}/>
+                <Route path="reset/:id/:activationToken" element={<PublicRoute><ResetPassView/></PublicRoute>}/>
               </Route>
               <Route path="activate/:id/:token" element={<PublicRoute><ActivateView /></PublicRoute>}/>
               <Route path="home">
@@ -87,8 +89,8 @@ function App() {
               <Route path="*" element={<InvalidRoute />} />
 
           </Routes>
-        
       </Router>
+      
     </div>
     // <div className="App">
     //   FRONTEND PADRE

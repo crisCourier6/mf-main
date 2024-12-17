@@ -71,9 +71,15 @@ const baseTheme = createTheme({
     },
     warning: {
       main: '#ff9800', // Main warning color
-      light: '#ffc947', // Light variant of the warning color
+      light: '#FFD97D', // Light variant of the warning color
       dark: '#c66900', // Dark variant of the warning color
       contrastText: '#000000', // Contrast color for text on warning color
+    },
+    success: {
+      main: '#b0e971', // Main warning color
+      light: '#dff5c4', // Light variant of the warning color
+      dark: '#79d673', // Dark variant of the warning color
+      contrastText: '#22323f', // Contrast color for text on warning color
     },
   },
 })
@@ -217,6 +223,22 @@ const theme = createTheme({
           fontFamily: 'Montserrat', 
           fontSize: 14,
           color: baseTheme.palette.primary.dark
+        },
+      },
+    },
+    MuiAlert: {
+      styleOverrides: {
+        filledSuccess: {
+          backgroundColor: baseTheme.palette.success.main,
+          color: baseTheme.palette.success.contrastText,
+        },
+        filledError: {
+          backgroundColor: baseTheme.palette.error.main,
+          color: baseTheme.palette.error.contrastText,
+        },
+        filledWarning: {
+          backgroundColor: baseTheme.palette.warning.main,
+          color: baseTheme.palette.warning.contrastText,
         },
       },
     },

@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Box, List, ListItem, ListItemButton, ListItemIcon, Drawer, AppBar, 
   Toolbar, IconButton, Typography, Paper, Slide,
-  Button} from "@mui/material";
+  Button,
+  Divider} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -24,6 +25,7 @@ import FoodEditIcon from "../svgs/FoodEditIcon";
 import FoodListIcon from "../svgs/FoodListIcon";
 import SubmissionsIcon from "../svgs/SubmissionsIcon";
 import HomeIcon from '@mui/icons-material/Home';
+import NavigateBack from "./NavigateBack";
 
 type Option = {
   name:string,
@@ -202,50 +204,48 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       if (currentExpertId){
         setOptionsApp(
           [
-            {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={32} height= {32}/>},
-            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
-            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
-            {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <SubmissionsIcon width={32} height= {32}/>},
-            // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width={32} height= {32}/>},
-            {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
-            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={32} height= {32}/>},
-            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={32} height= {32}/>},
-            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={32} height= {32}/>},
-            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={32} height= {32}/>},
-            // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={32} height= {32}/>},
-            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={32} height= {32}/>},
-            // {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={32} height= {32}/>}
+            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
+            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
+            {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <SubmissionsIcon width={28} height= {28}/>},
+            // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width={28} height= {28}/>},
+            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
+            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
+            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
+            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={28} height= {28}/>},
+            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
+            // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={28} height= {28}/>},
+            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={28} height= {28}/>},
+            // {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={28} height= {28}/>}
           ]
         )
       }
       else if (currentStoreId){
         setOptionsApp(
           [
-            {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={32} height= {32}/>},
-            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
-            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
-            {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
-            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={32} height= {32}/>},
-            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={32} height= {32}/>},
-            {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={32} height= {32}/>},
+            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
+            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
+            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
+            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
+            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
+            {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={28} height= {28}/>},
           ]
         )
       }
       else {
         setOptionsApp(
           [
-            {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={32} height= {32}/>},
-            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={32} height= {32}/>},
-            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={32} height= {32}/>},
-            {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={32} height= {32}/>},
-            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={32} height= {32}/>},
-            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={32} height= {32}/>},
-            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={32} height= {32}/>},
-            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={32} height= {32}/>},
-            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={32} height= {32}/>},
-            {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={32} height= {32}/>},
-            {name: "Diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={32} height= {32}/>},
-            {name: "Mis Aportes",  allowedRoles: ["Core"], function: handleFoodEdits, icon: <FoodEditIcon width={32} height= {32}/>},
+            
+            {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
+            {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
+            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
+            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
+            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
+            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={28} height= {28}/>},
+            {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
+            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={28} height= {28}/>},
+            {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={28} height= {28}/>},
+            {name: "Diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={28} height= {28}/>},
+            {name: "Mis Aportes",  allowedRoles: ["Core"], function: handleFoodEdits, icon: <FoodEditIcon width={28} height= {28}/>},
           ]
         )
       }
@@ -253,9 +253,10 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     }, [currentExpertId])
 
     const optionsUser = [
-      {name: "Mi perfil", function: handleProfile, icon:<AccountCircleRoundedIcon sx={{fontSize: 32}}/> },
+      {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={28} height= {28}/>},
+      {name: "Mi perfil", function: handleProfile, icon:<AccountCircleRoundedIcon sx={{fontSize: 28}}/> },
       {name: "Notificaciones", function: handleNotif, icon: <UserNotificationCount/>},
-      {name: "Cerrar sesión", function: handleLogout, icon: <LogoutRoundedIcon width={32} height={32}/>},
+      {name: "Cerrar sesión", function: handleLogout, icon: <LogoutRoundedIcon width={28} height={28}/>},
     ]
 
     const DrawerListUser = (
@@ -263,7 +264,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       sx={{ 
         borderLeft: "3px solid",
         width: 250, 
-        height: "100vh", 
+        
         borderColor: "secondary.main", 
       }}>
         <Paper sx={{
@@ -276,20 +277,35 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           textIndent: 10
           
         }}>
-          <Typography variant="h5" color="primary.contrastText">
+          <Typography variant="h6" color="primary.contrastText">
             {currentUserName}
           </Typography>
           
         </Paper>
-        <List>
+        <List sx={{ borderBottom: "3px solid", borderColor: "secondary.main"}}>
           {optionsUser.map((option) => (
             <ListItem key={option.name} disablePadding>
               <ListItemButton onClick={option.function}>
                 <ListItemIcon sx={{color:"secondary.contrastText"}}>
                   {option.icon}
                 </ListItemIcon>
-                <Typography   fontFamily={"Montserrat"} color={"primary.dark"}>
+                <Typography variant="subtitle1">
                 {option.name} 
+                </Typography>
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        
+        <List>
+          {optionsApp.map((option, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemButton onClick={option.function}>
+                <ListItemIcon sx={{color:"primary.main"}}>
+                  {option.icon}
+                </ListItemIcon>
+                <Typography variant="subtitle1">
+                  {option.name} 
                 </Typography>
               </ListItemButton>
             </ListItem>
@@ -351,22 +367,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
            }}
         >
           <Toolbar sx={{display: "flex", p:0, flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", height:"50px" }}>
-          <Button
-            onClick={toggleDrawerLeft(true)}
-            size="small"
-            color="inherit"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              textTransform: "none",
-              border: "2px"
-            }}
-          >
-            <MenuIcon fontSize="medium" />
-            <Typography variant="subtitle2">Menú</Typography>
-          </Button>
+          <NavigateBack/>
             {/* <Box
               component="img"
               sx={{
@@ -394,8 +395,8 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
                 border: "2px"
               }}
             >
-              <AccountCircleRoundedIcon fontSize="medium" />
-              <Typography variant="subtitle2">Perfil</Typography>
+              <MenuIcon fontSize="medium" />
+              <Typography variant="subtitle2">Menú</Typography>
             </Button>
             
           </Toolbar>

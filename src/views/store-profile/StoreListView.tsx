@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import TopBar from '../../components/TopBar';
 import StoreList from '../../microfrontends/store-profile/StoreList';
+import NavigateBack from '../../components/NavigateBack';
 
 
 export const StoreListView = () => {
@@ -18,6 +19,7 @@ export const StoreListView = () => {
           alignItems="center" >
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}/> 
       <StoreList isAppBarVisible={isAppBarVisible}></StoreList>
+      
     </Grid>
   )
 }
