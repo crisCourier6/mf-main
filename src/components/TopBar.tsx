@@ -135,12 +135,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     }
 
     const handleScan = () => {
-      if (process.env.REACT_APP_SCANNER_URL){
-        window.location.replace(process.env.REACT_APP_SCANNER_URL)
-      }
-      else {
-        navigate("/scan")
-      }
+      navigate("/scan")
     }
 
     const handleSearch = () => {
@@ -264,7 +259,6 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       sx={{ 
         borderLeft: "3px solid",
         width: 250, 
-        
         borderColor: "secondary.main", 
       }}>
         <Paper sx={{
@@ -282,7 +276,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           </Typography>
           
         </Paper>
-        <List sx={{ borderBottom: "3px solid", borderColor: "secondary.main"}}>
+        <List sx={{ borderBottom: "3px solid", borderColor: "secondary.main", bgcolor: "warning.light"}}>
           {optionsUser.map((option) => (
             <ListItem key={option.name} disablePadding>
               <ListItemButton onClick={option.function}>
@@ -379,7 +373,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
               src={Logo}
               onClick={handleHome}
               /> */}
-            <Box height={"100%"} sx={{display: "flex", alignItems: "center", cursor: "pointer"}} onClick={handleHome}>
+            <Box height={"50px"} sx={{display: "flex", alignItems: "center", cursor: "pointer"}} onClick={handleHome}>
               <EFLogo width={"auto"} height={"70%"}/>
             </Box>
             <Button

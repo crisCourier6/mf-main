@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IconButton, Box } from '@mui/material';
+import { IconButton, Box, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const NavigateBack = () => {
@@ -11,13 +11,21 @@ const NavigateBack = () => {
     };
 
     return (
-            <IconButton
-                onClick={handleBack}
-                color="primary"
-                
+        <Button
+              onClick={handleBack}
+              size="small"
+              color="inherit"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textTransform: "none",
+                border: "2px",
+              }}
             >
                 <ArrowBackIcon />
-            </IconButton>
+        </Button>
     );
 };
 

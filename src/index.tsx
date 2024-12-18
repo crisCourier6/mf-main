@@ -71,7 +71,7 @@ const baseTheme = createTheme({
     },
     warning: {
       main: '#ff9800', // Main warning color
-      light: '#FFD97D', // Light variant of the warning color
+      light: '#ffffe6', // Light variant of the warning color
       dark: '#c66900', // Dark variant of the warning color
       contrastText: '#000000', // Contrast color for text on warning color
     },

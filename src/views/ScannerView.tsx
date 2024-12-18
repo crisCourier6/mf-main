@@ -1,17 +1,17 @@
 import React from 'react';
 import { Scanner } from '../components/Scanner';
 import { Grid } from '@mui/material';
+import TopBar from '../components/TopBar';
 
 export const ScannerView = () => {
-
-  
-  return ( <Grid container 
+  return ( <Grid container
+    display="flex" 
     direction="column" 
-    justifyContent="center" 
+    justifyContent="flex-start" 
     alignItems="center" 
-    width="100vw" 
-    height="100vh"
-    sx={{backgroundColor: "secondary.light", borderColor: "primary.dark"}}>
+    
+    sx={{backgroundColor: "warning.light", borderColor: "primary.dark"}}>
+      <TopBar onVisibilityChange={()=>{}}/>
       <Scanner></Scanner>
   </Grid>
   )

@@ -81,7 +81,7 @@ function App() {
                 <Route index={true} element={<ProtectedRoute><FoodSearchLocalView/></ProtectedRoute>}></Route>
               </Route>
               <Route path="scan">
-                <Route index={true} element={<ProtectedRoute><ScannerView/></ProtectedRoute>}></Route>
+                <Route index={true} element={<ScannerView/>}></Route>
               </Route>
               <Route path="waiting">
                 <Route index={true} element={<Loading/>}></Route>

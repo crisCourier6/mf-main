@@ -30,12 +30,7 @@ export const HomeOptions:React.FC= () => {
   const currentStoreId = window.sessionStorage.getItem("s_id") || window.localStorage.getItem("s_id")
   const currentExpertId = window.sessionStorage.getItem("e_id") || window.localStorage.getItem("e_id")
   const handleScan = () => {
-    if (process.env.REACT_APP_SCANNER_URL){
-      window.location.replace(process.env.REACT_APP_SCANNER_URL)
-    }
-    else {
-      navigate("/scan")
-    }
+    navigate("/scan")
   }
 
   const handleSearch = () => {
@@ -158,6 +153,8 @@ export const HomeOptions:React.FC= () => {
                   width: "30%",
                   maxWidth: "200px", 
                   fontWeight: "bold",
+                  bgcolor: "transparent",
+                  borderColor: "transparent"
               }}
               > 
                 <Box width="70%" color="inherit">
