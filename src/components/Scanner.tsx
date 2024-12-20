@@ -20,7 +20,7 @@ export const Scanner = () => {
     const handleManualCode = () => {
         const validDigits = [12, 13]
         if (validDigits.includes(manualCode.length)){
-        window.location.replace("http://192.168.100.6:4000/food/" + manualCode)
+            navigate("/food/" + manualCode)
         }
     }
 
