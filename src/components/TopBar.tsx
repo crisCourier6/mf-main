@@ -25,7 +25,8 @@ import FoodEditIcon from "../svgs/FoodEditIcon";
 import FoodListIcon from "../svgs/FoodListIcon";
 import SubmissionsIcon from "../svgs/SubmissionsIcon";
 import HomeIcon from '@mui/icons-material/Home';
-import NavigateBack from "./NavigateBack";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import FoodEditPendingCount from "../microfrontends/food-edits/FoodEditPendingCount";
 
 type Option = {
   name:string,
@@ -106,15 +107,15 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     const currentUserName = window.sessionStorage.getItem("name") || window.localStorage.getItem("name")
     const currentStoreId = window.sessionStorage.getItem("s_id") || window.localStorage.getItem("s_id")
     const currentExpertId = window.sessionStorage.getItem("e_id") || window.localStorage.getItem("e_id")
-    const [openRight, setOpenRight] = React.useState(false);
-    const [openLeft, setOpenLeft] = React.useState(false);
+    const [openProfile, setOpenProfile] = React.useState(false);
+    const [openMenu, setOpenMenu] = React.useState(false);
 
-    const toggleDrawerRight = (newOpen: boolean) => () => {
-      setOpenRight(newOpen);
+    const toggleDrawerMenu = (newOpen: boolean) => () => {
+      setOpenMenu(newOpen);
     };
 
-    const toggleDrawerLeft = (newOpen: boolean) => () => {
-      setOpenLeft(newOpen);
+    const toggleDrawerProfile = (newOpen: boolean) => () => {
+      setOpenProfile(newOpen);
     };
 
     const handleProfile = () => {
@@ -157,6 +158,10 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     // const handleFood = () => {
     //   navigate("/food")
     // }
+
+    const handleBack = () => {
+      navigate(-1); // Navigate to the previous page
+    };
 
     const handleFoodHistory = () => {
       navigate("/users/" + currentUserId + "/food-history")
@@ -201,11 +206,11 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           [
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
-            {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <SubmissionsIcon width={28} height= {28}/>},
+            {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <FoodEditPendingCount width='28px' height= '28px'/>},
             // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width={28} height= {28}/>},
             //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
-            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
-            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
+            {name: "Nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
+            {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
             {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={28} height= {28}/>},
             {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
             // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={28} height= {28}/>},
@@ -220,7 +225,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
             //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
-            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
+            {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
             {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
             {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={28} height= {28}/>},
           ]
@@ -232,15 +237,15 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
             
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
-            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
-            {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
-            {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
-            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={28} height= {28}/>},
             {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
-            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={28} height= {28}/>},
-            {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={28} height= {28}/>},
-            {name: "Diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={28} height= {28}/>},
+            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
+            {name: "Nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
+            {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
+            {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={28} height= {28}/>},
             {name: "Mis Aportes",  allowedRoles: ["Core"], function: handleFoodEdits, icon: <FoodEditIcon width={28} height= {28}/>},
+            {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={28} height= {28}/>},
+            {name: "Mi diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={28} height= {28}/>},
+            {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={28} height= {28}/>},
           ]
         )
       }
@@ -255,10 +260,11 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     ]
 
     const DrawerListUser = (
-      <Box role="presentation" onClick={toggleDrawerRight(false)} 
+      <Box role="presentation" onClick={toggleDrawerProfile(false)} 
       sx={{ 
         borderLeft: "3px solid",
         width: 250, 
+        height: "100vh",
         borderColor: "secondary.main", 
       }}>
         <Paper sx={{
@@ -276,7 +282,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           </Typography>
           
         </Paper>
-        <List sx={{ borderBottom: "3px solid", borderColor: "secondary.main", bgcolor: "warning.light"}}>
+        <List>
           {optionsUser.map((option) => (
             <ListItem key={option.name} disablePadding>
               <ListItemButton onClick={option.function}>
@@ -290,26 +296,11 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
             </ListItem>
           ))}
         </List>
-        
-        <List>
-          {optionsApp.map((option, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton onClick={option.function}>
-                <ListItemIcon sx={{color:"primary.main"}}>
-                  {option.icon}
-                </ListItemIcon>
-                <Typography variant="subtitle1">
-                  {option.name} 
-                </Typography>
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Box>
     );
 
     const DrawerListApp = (
-      <Box role="presentation" onClick={toggleDrawerLeft(false)}
+      <Box role="presentation" onClick={toggleDrawerMenu(false)}
       sx={{  
         borderRight: "3px solid",
         width: 250, 
@@ -317,7 +308,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
         borderColor: "secondary.main", 
       }}>
         <Paper sx={{
-          padding: "10px",
+          padding: "5px",
           display:"flex",
           borderRadius: 0,
           borderBottom: "3px solid",
@@ -327,7 +318,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           
         }}>
           <Typography variant="h6" color="primary.contrastText">
-            ¿Qué quieres hacer?
+            Menú
           </Typography>
         </Paper>
         <List>
@@ -337,7 +328,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
                 <ListItemIcon sx={{color:"primary.main"}}>
                   {option.icon}
                 </ListItemIcon>
-                <Typography   fontFamily={"Montserrat"} color={"primary.dark"}>
+                <Typography variant="subtitle1">
                   {option.name} 
                 </Typography>
               </ListItemButton>
@@ -356,12 +347,27 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           alignItems: "center",
            bgcolor: "secondary.main",
            color: "primary.dark",
-           width: "100%",
+           width: "100vw",
            height: "50px"
            }}
         >
-          <Toolbar sx={{display: "flex", p:0, flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", height:"50px" }}>
-          <NavigateBack/>
+          <Toolbar sx={{display: "flex", p:0, flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", height:"50px" }}> 
+            <Box sx={{display:"flex", justifyContent: "flex-start", flex:1}}>
+              <IconButton
+                onClick={toggleDrawerMenu(true)}
+                size="small"
+                color="inherit"
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textTransform: "none",
+                }}
+              >
+                <MenuIcon fontSize="large" />
+              </IconButton>
+            </Box>
             {/* <Box
               component="img"
               sx={{
@@ -373,31 +379,55 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
               src={Logo}
               onClick={handleHome}
               /> */}
-            <Box height={"50px"} sx={{display: "flex", alignItems: "center", cursor: "pointer"}} onClick={handleHome}>
-              <EFLogo width={"auto"} height={"70%"}/>
-            </Box>
-            <Button
-              onClick={toggleDrawerRight(true)}
-              size="small"
-              color="inherit"
+            <Box height={"50px"} onClick={handleHome}
               sx={{
-                display: "flex",
-                flexDirection: "column",
+                display: "flex", 
                 alignItems: "center",
-                justifyContent: "center",
-                textTransform: "none",
-                border: "2px"
+                flexDirection: "row",
+                justifyContent: "center", 
+                cursor: "pointer",
+                flex: 2
               }}
             >
-              <MenuIcon fontSize="medium" />
-              <Typography variant="subtitle2">Menú</Typography>
-            </Button>
+              {/* <HomeIcon fontSize="medium"/> */}
+              <EFLogo width={"auto"} height={"70%"}/>
+            </Box>
+            <Box sx={{display:"flex", justifyContent: "flex-end", flex:1}}>
+              {/* <IconButton
+                onClick={toggleDrawerProfile(true)}
+                size="small"
+                color="inherit"
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textTransform: "none",
+                }}
+              >
+                <AccountCircleRoundedIcon fontSize="large" />
+              </IconButton> */}
+              <IconButton
+                onClick={toggleDrawerProfile(true)}
+                size="small"
+                color="inherit"
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textTransform: "none",
+                }}
+              >
+                <AccountCircleRoundedIcon fontSize="large" />
+              </IconButton>
+            </Box>
             
           </Toolbar>
-          <Drawer anchor="right" open={openRight} onClose={toggleDrawerRight(false)}>
+          <Drawer anchor="right" open={openProfile} onClose={toggleDrawerProfile(false)}>
             {DrawerListUser}
           </Drawer>
-          <Drawer anchor="left" open={openLeft} onClose={toggleDrawerLeft(false)}>
+          <Drawer anchor="left" open={openMenu} onClose={toggleDrawerMenu(false)}>
             {DrawerListApp}
           </Drawer>
         </AppBar>

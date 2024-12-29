@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IconButton, Box, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const NavigateBack = () => {
+const NavigateBack:React.FC<{size?: "small" | "medium" | "large"}> = ({size = "medium"}) => {
     const navigate = useNavigate();
 
     const handleBack = () => {
@@ -11,9 +11,8 @@ const NavigateBack = () => {
     };
 
     return (
-        <Button
+        <IconButton
               onClick={handleBack}
-              size="small"
               color="inherit"
               sx={{
                 display: "flex",
@@ -21,11 +20,10 @@ const NavigateBack = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 textTransform: "none",
-                border: "2px",
               }}
             >
-                <ArrowBackIcon />
-        </Button>
+                <ArrowBackIcon fontSize={size}/>
+        </IconButton>
     );
 };
 

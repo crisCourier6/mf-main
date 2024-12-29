@@ -3,8 +3,9 @@ import { useState } from "react"
 import { useZxing } from "react-zxing"
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import NavigateBack from './NavigateBack';
 
-export const Scanner = () => {
+export const Scanner: React.FC<{ isAppBarVisible: boolean }> = ({ isAppBarVisible }) => {
     const navigate = useNavigate()
     const [manualCode, setManualCode] = useState("")
     const validDigits = [12, 13]
@@ -29,15 +30,44 @@ export const Scanner = () => {
             flexDirection="column" 
             justifyContent="flex-start"
             alignItems="center"
-            sx={{width: "95%", maxWidth:"600px", height: "100vh"}}
+            sx={{width: "100%", maxWidth:"600px", height: "100vh"}}
         >
-            <Typography variant='h5' sx={{py:1}}>
-                Escáner
-            </Typography>
+            <Box 
+                sx={{
+                    position: 'sticky',
+                    top: isAppBarVisible?"50px":"0px",
+                    width:"100%",
+                    maxWidth: "500px",
+                    transition: "top 0.1s",
+                    backgroundColor: 'primary.dark', // Ensure visibility over content
+                    zIndex: 100,
+                    boxShadow: 3,
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    borderBottom: "5px solid",
+                    borderLeft: "5px solid",
+                    borderRight: "5px solid",
+                    borderColor: "secondary.main",
+                    boxSizing: "border-box",
+                    color: "primary.contrastText"
+                  }}
+            >
+                <Box sx={{display: "flex", flex: 1}}>
+                    <NavigateBack/>
+                </Box>
+                <Box sx={{display: "flex", flex: 4}}>
+                    <Typography variant='h6' width="100%"  color="primary.contrastText" sx={{py:1}}>
+                        Escáner
+                    </Typography>
+                </Box>
+                <Box sx={{display: "flex", flex: 1}}>
+                </Box>
+            </Box>
             <Paper elevation={0} sx={{
                 display: "flex",
                 color: "secondary.contrastText",
-                width: "100%",
+                width: "95%",
                 textAlign: "center",
                 alignItems: "center",
                 justifyContent: "center",
@@ -46,12 +76,13 @@ export const Scanner = () => {
                 
 
             }}>
-                <Typography variant='subtitle2'>
+                <Typography variant='subtitle2' sx={{py:1}}>
                     Enfoca el código de barras del producto o ingresa el código numérico manualmente
                 </Typography>
             </Paper>
             <Box 
             sx={{
+                width: "90%",
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-around",
@@ -84,7 +115,7 @@ export const Scanner = () => {
             sx={{
                 border: "5px solid",
                 borderColor: "primary.dark",
-                width:"100%",
+                width:"90%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",

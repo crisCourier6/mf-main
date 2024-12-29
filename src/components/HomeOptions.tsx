@@ -15,6 +15,7 @@ import SubmissionsIcon from '../svgs/SubmissionsIcon';
 import FoodListIcon from '../svgs/FoodListIcon';
 import DiaryIcon from '../svgs/DiaryIcon';
 import FoodEditIcon from '../svgs/FoodEditIcon';
+import FoodEditPendingCount from '../microfrontends/food-edits/FoodEditPendingCount';
 
 type Option = {
   name:string,
@@ -92,11 +93,11 @@ export const HomeOptions:React.FC= () => {
         [
           {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='100%' height= 'auto'/>},
           {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width='100%' height= 'auto'/>},
-          {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <SubmissionsIcon width='100%' height= 'auto'/>},
+          {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <FoodEditPendingCount width='100%' height= 'auto'/>},
           // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width='100%' height= 'auto'/>},
-          {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='100%' height= 'auto'/>},
-          {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width='100%' height= 'auto'/>},
-          {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
+          {name: "Mi perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='100%' height= 'auto'/>},
+          {name: "Nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width='100%' height= 'auto'/>},
+          {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
           {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width='100%' height= 'auto'/>},
           {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width='100%' height= 'auto'/>},
           // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width='100%' height= 'auto'/>},
@@ -110,8 +111,8 @@ export const HomeOptions:React.FC= () => {
         [
           {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='100%' height= 'auto'/>},
           {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width='100%' height= 'auto'/>},
-          {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='100%' height= 'auto'/>},
-          {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
+          {name: "Mi perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='100%' height= 'auto'/>},
+          {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
           {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width='100%' height= 'auto'/>},
           {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width='100%' height= 'auto'/>},
         ]
@@ -123,13 +124,13 @@ export const HomeOptions:React.FC= () => {
           {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width='100%' height= 'auto'/>},
           {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width='100%' height= 'auto'/>},
           {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width='100%' height= 'auto'/>},
-          {name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='100%' height= 'auto'/>},
-          {name: "Ver nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width='100%' height= 'auto'/>},
-          {name: "Ver tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
+          {name: "Mi perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width='100%' height= 'auto'/>},
+          {name: "Nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width='100%' height= 'auto'/>},
+          {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width='100%' height= 'auto'/>},
           {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width='100%' height= 'auto'/>},
           {name: "Mis Aportes",  allowedRoles: ["Core"], function: handleFoodEdits, icon: <FoodEditIcon width={"100%"} height={"auto"}/>},
           {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width='100%' height= 'auto'/>},
-          {name: "Diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={"100%"} height={"auto"}/>},
+          {name: "Mi diario alimenticio", allowedRoles: ["Core"], function: handleFoodDiary, icon: <DiaryIcon width={"100%"} height={"auto"}/>},
           {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width='100%' height= 'auto'/>},
         ]
       )
@@ -142,26 +143,27 @@ export const HomeOptions:React.FC= () => {
                 flexDirection="row" 
                 justifyContent="space-around"
                 alignItems="stretch"
-                sx={{width: "100vw", maxWidth:"800px", gap:"5px", flexWrap: "wrap", pb: 7}}
+                sx={{width: "100vw", maxWidth:"500px", gap:"5px", flexWrap: "wrap", pb: 7}}
             >
             {optionsUser.map((option) => (
               <Button key={option.name} variant='dashed' onClick={option.function} 
               sx={{display: "flex", 
                   flexDirection: "column", 
                   alignItems: "center", 
-                  justifyContent: "stretch",
+                  justifyContent: "space-evenly",
                   width: "30%",
-                  maxWidth: "200px", 
+                  maxWidth: "150px", 
                   fontWeight: "bold",
                   bgcolor: "transparent",
-                  borderColor: "transparent"
+                  borderColor: "transparent",
+                  p:1,
               }}
               > 
-                <Box width="70%" color="inherit">
+                <Box width="60%" color="inherit">
                   {option.icon}
                 </Box>
                 
-                <Typography variant='subtitle1' sx={{fontSize:{xs: 12, sm:18}, fontStyle: "bold"}}>
+                <Typography variant='subtitle1' sx={{fontSize:{xs: 12, sm:16}, fontStyle: "bold"}}>
                     {option.name}
                 </Typography>
             </Button>

@@ -64,7 +64,7 @@ export const FoodProfileView = () => {
       alignItems: "center",
       borderTop: "2px solid",
       borderColor: "secondary.main",
-      bgcolor: "primary.dark"
+      bgcolor: "primary.dark",
       }}>
         <Box sx={{ flex: 1, padding:0
         }}>

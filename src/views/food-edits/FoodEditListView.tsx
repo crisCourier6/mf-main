@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
 import FoodEditList from '../../microfrontends/food-edits/FoodEditList';
 import TopBar from '../../components/TopBar';
 import api from '../../api';
 import Unauthorized from '../../components/Unauthorized';
 import Loading from '../../components/Loading';
+import NavigateBack from '../../components/NavigateBack';
 
 export const FoodEditListView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
@@ -42,7 +43,41 @@ export const FoodEditListView = () => {
           <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
           {isReady 
           ? (canJudge 
-              ? <FoodEditList isAppBarVisible={isAppBarVisible} /> 
+              ? <>
+                  <Box 
+                  sx={{
+                    position: 'sticky',
+                    top: isAppBarVisible?"50px":"0px",
+                    width:"100%",
+                    maxWidth: "500px",
+                    transition: "top 0.1s",
+                    backgroundColor: 'primary.dark', // Ensure visibility over content
+                    zIndex: 100,
+                    boxShadow: 3,
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    borderBottom: "5px solid",
+                    borderLeft: "5px solid",
+                    borderRight: "5px solid",
+                    borderColor: "secondary.main",
+                    boxSizing: "border-box",
+                    color: "primary.contrastText"
+                  }}
+                  >
+                  <Box sx={{display: "flex", flex: 1}}>
+                      <NavigateBack/>
+                  </Box>
+                  <Box sx={{display: "flex", flex: 4}}>
+                      <Typography variant='h6' width="100%"  color="primary.contrastText" sx={{py:1}}>
+                          Aportes de alimentos
+                      </Typography>
+                  </Box>
+                  <Box sx={{display: "flex", flex: 1}}>
+                  </Box>
+                </Box>
+                <FoodEditList isAppBarVisible={isAppBarVisible} onPendingCountChange={()=>{}} /> 
+              </>
               : <Unauthorized />) 
           : <Loading />}
           
