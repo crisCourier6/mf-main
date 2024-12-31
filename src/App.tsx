@@ -30,6 +30,7 @@ import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import InvalidRoute from "./components/InvalidRoute";
 import ResetPassView from "./views/accounts/ResetPassView";
+import HelpView from "./views/HelpView";
 
 function App() {
   return (
@@ -82,6 +83,9 @@ function App() {
               </Route>
               <Route path="scan">
                 <Route index={true} element={<ScannerView/>}></Route>
+              </Route>
+              <Route path="help">
+                <Route index={true} element={<HelpView/>}></Route>
               </Route>
               <Route path="waiting">
                 <Route index={true} element={<Loading/>}></Route>

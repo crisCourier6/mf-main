@@ -1,37 +1,21 @@
 import { Box, Grid, IconButton, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import TopBar from '../components/TopBar';
+import Loading from '../components/Loading';
+import NavigateBack from '../components/NavigateBack';
+import { Help } from '../components/Help';
 
-import TopBar from '../../components/TopBar';
-import UserAccount from '../../microfrontends/accounts/UserAccount';
-import Loading from '../../components/Loading';
-import NavigateBack from '../../components/NavigateBack';
-import UserNotificationCount from '../../microfrontends/notification/UserNotificationCount';
-import { useNavigate } from 'react-router-dom';
-
-export const UserProfileView = () => {
-  const navigate = useNavigate()
+export const HelpView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
-  const [isReady, setIsReady] = useState(false)
-  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
-  const handleReady = () => {
-    setIsReady(true); // Set the state to true when ready
-  };
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
 
-  const handleNotif = () => {
-    navigate("/users/" + currentUserId + "/notifications")
-  }
   return (
     <Grid container direction="column" 
           justifyContent="flex-start" 
-          width={"100vw"}
           alignItems="center" sx={{gap:2}}>
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar> 
-      {!isReady 
-        ? <Loading/>
-      : <>
       <Box 
       sx={{
           display: "flex",
@@ -60,32 +44,15 @@ export const UserProfileView = () => {
           </Box>
           <Box sx={{display: "flex", flex: 4}}>
               <Typography variant='h6' width="100%"  color="primary.contrastText" sx={{py:1}}>
-                  Mi perfil
+                  Ayuda
               </Typography>
           </Box>
           <Box sx={{display: "flex", flex: 1}}>
-          <IconButton
-                onClick={handleNotif}
-                size="small"
-                color="inherit"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textTransform: "none",
-                }}
-              >
-              <UserNotificationCount/>
-            </IconButton>
           </Box>
-          </Box>
-         
-      </> 
-      }
-       <UserAccount isAppBarVisible={isAppBarVisible} onReady={handleReady}/> 
+    </Box>
+    <Help isAppBarVisible={isAppBarVisible}/>
     </Grid>
   )
 }
 
-export default UserProfileView
+export default HelpView

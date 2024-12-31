@@ -23,6 +23,7 @@ import StatsIcon from "../svgs/StatsIcon";
 import DiaryIcon from "../svgs/DiaryIcon";
 import FoodEditIcon from "../svgs/FoodEditIcon";
 import FoodListIcon from "../svgs/FoodListIcon";
+import HelpIcon from '@mui/icons-material/Help';
 import SubmissionsIcon from "../svgs/SubmissionsIcon";
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -198,6 +199,10 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     navigate("/food-edit")
   }
 
+  const handleHelp = () => {
+    navigate("/help")
+  }
+
     const [optionsApp, setOptionsApp] = useState<Option[]>([])
 
     useEffect(()=>{
@@ -256,6 +261,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       {name: "Ir al inicio", allowedRoles: ["Core"], function: handleHome, icon: <HomeIcon width={28} height= {28}/>},
       {name: "Mi perfil", function: handleProfile, icon:<AccountCircleRoundedIcon sx={{fontSize: 28}}/> },
       {name: "Notificaciones", function: handleNotif, icon: <UserNotificationCount/>},
+      {name: "Ayuda", function: handleHelp, icon: <HelpIcon width={28} height= {28}/>},
       {name: "Cerrar sesión", function: handleLogout, icon: <LogoutRoundedIcon width={28} height={28}/>},
     ]
 

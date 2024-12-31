@@ -4,6 +4,7 @@ import { useState } from 'react';
 import TopBar from '../../components/TopBar';
 import FoodEdit from '../../microfrontends/food-edits/FoodEdit';
 import api from '../../api';
+import Loading from '../../components/Loading';
 
 
 export const FoodEditView = () => {
@@ -15,6 +16,7 @@ export const FoodEditView = () => {
     const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
     const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
     const [isExpert, setIsExpert] = useState(false)
+    const [allDone, setAllDone] = useState(false)
   
     useEffect(()=>{
       api.get(`${checkRoleURL}/${currentUserId}/roles`, 
@@ -31,11 +33,19 @@ export const FoodEditView = () => {
       .catch(error => {
         console.log(error)
       })
+      .finally(()=>{
+        setAllDone(true)
+      })
     },[])
     return (
     <Grid container direction="column" justifyContent="flex-start" alignItems="center">
         <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar>
-        <FoodEdit isAppBarVisible={isAppBarVisible} isExpert={isExpert}/>
+        {
+          allDone
+            ?  <FoodEdit isAppBarVisible={isAppBarVisible} isExpert={isExpert}/>
+            : <Loading/>
+        }
+       
     </Grid>
     )
 }
