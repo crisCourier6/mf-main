@@ -2,9 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { 
   Box, List, ListItem, ListItemButton, ListItemIcon, Drawer, AppBar, 
-  Toolbar, IconButton, Typography, Paper, Slide,
-  Button,
-  Divider} from "@mui/material";
+  Toolbar, IconButton, Typography, Paper, Slide } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -12,9 +10,7 @@ import SearchIcon from "../svgs/SearchIcon";
 import ExpertIcon from "../svgs/ExpertIcon";
 import ScannerIcon from "../svgs/ScannerIcon";
 import StoreIcon from "../svgs/StoreIcon";
-import { useTheme } from "@mui/material/styles";
 import UserNotificationCount from "../microfrontends/notification/UserNotificationCount";
-import AccountIcon from "../svgs/AccountIcon";
 import ArticlesIcon from "../svgs/ArticlesIcon";
 import HistoryIcon from "../svgs/HistoryIcon";
 import FoodPrefsIcon from "../svgs/FoodPrefsIcon";
@@ -24,9 +20,7 @@ import DiaryIcon from "../svgs/DiaryIcon";
 import FoodEditIcon from "../svgs/FoodEditIcon";
 import FoodListIcon from "../svgs/FoodListIcon";
 import HelpIcon from '@mui/icons-material/Help';
-import SubmissionsIcon from "../svgs/SubmissionsIcon";
 import HomeIcon from '@mui/icons-material/Home';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FoodEditPendingCount from "../microfrontends/food-edits/FoodEditPendingCount";
 
 type Option = {
