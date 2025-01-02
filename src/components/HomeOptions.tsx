@@ -134,7 +134,7 @@ export const HomeOptions:React.FC= () => {
                 flexDirection="row" 
                 justifyContent="space-around"
                 alignItems="stretch"
-                sx={{width: "100vw", maxWidth:"500px", gap:"5px", flexWrap: "wrap", pb: 7}}
+                sx={{width: "100vw", maxWidth:"500px", gap:"5px", flexWrap: "wrap"}}
             >
             {optionsUser.map((option) => (
               <Button key={option.name} variant='dashed' onClick={option.function} 

@@ -44,9 +44,9 @@ export const LoginView = () => {
     setValue(newValue);
   };
 
-    return ( <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw" marginTop={2}>
+    return ( <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" width="100vw" height={"100vh"}>
         
-          <Box width={"90%"} sx={{maxWidth: "300px", display: "flex", alignItems: "center"}}>
+          <Box width={"80%"} sx={{maxWidth: "300px", display: "flex", alignItems: "center", pt:1}}>
             <EFLogo width={"100%"} height={"auto"}/>
           </Box>
           <Tabs  value={value} onChange={handleChange} >
@@ -59,6 +59,7 @@ export const LoginView = () => {
           <CustomTabPanel value={value} index={1}>
             <Register></Register>
           </CustomTabPanel>
+          <Box sx={{height:10}}/>
           <GoogleAuth></GoogleAuth>
       
       </Grid>
