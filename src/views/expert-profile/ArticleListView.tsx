@@ -8,8 +8,8 @@ import api from '../../api';
 export const ArticleListView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
   const checkRoleURL = "/users"
-  const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
-  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+  const token = window.sessionStorage.getItem("token") ?? window.localStorage.getItem("token")
+  const currentUserId = window.sessionStorage.getItem("id") ?? window.localStorage.getItem("id")
   const [canCreateArticle, setCanCreateArticle] = useState(false)
 
   useEffect(()=>{

@@ -1,15 +1,5 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import { Paper } from "@mui/material";
-
-// const PageLayout = xcss({
-//     display: "flex",
-//     width: "100%"
-// })
-
-// const ComponentLayout = xcss({
-//     width: "80%",
-//     maxWidth: "300px",
-// });
 
 const UserMenu = () => {
     return (

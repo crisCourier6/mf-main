@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { useParams } from "react-router-dom"
 import Activate from '../../microfrontends/accounts/Activate';
 import Logo from "../../../public/EyesFoodBetaLogo.png"
 

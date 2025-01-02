@@ -1,7 +1,6 @@
-import { Box, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import TopBar from '../components/TopBar';
-import Loading from '../components/Loading';
 import NavigateBack from '../components/NavigateBack';
 import { Help } from '../components/Help';
 

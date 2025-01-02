@@ -14,8 +14,8 @@ export const FoodProfileView = () => {
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };
-  const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
-  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+  const token = window.sessionStorage.getItem("token") ?? window.localStorage.getItem("token")
+  const currentUserId = window.sessionStorage.getItem("id") ?? window.localStorage.getItem("id")
   const [canAddAdvice, setCanAddAdvice] = useState(false)
   const [canEditCatalogue, setCanEditCatalogue] = useState(false)
   const checkRoleURL = "/users"

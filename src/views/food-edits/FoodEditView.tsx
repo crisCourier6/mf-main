@@ -13,8 +13,8 @@ export const FoodEditView = () => {
         setIsAppBarVisible(visible);
     };
     const checkRoleURL = "/users"
-    const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
-    const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+    const token = window.sessionStorage.getItem("token") ?? window.localStorage.getItem("token")
+    const currentUserId = window.sessionStorage.getItem("id") ?? window.localStorage.getItem("id")
     const [isExpert, setIsExpert] = useState(false)
     const [allDone, setAllDone] = useState(false)
   

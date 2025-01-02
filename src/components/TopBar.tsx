@@ -98,10 +98,10 @@ const HideOnScroll: React.FC<{ onVisibilityChange: (visible: boolean) =>
 
 const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ onVisibilityChange }) => {
     const navigate = useNavigate()
-    const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
-    const currentUserName = window.sessionStorage.getItem("name") || window.localStorage.getItem("name")
-    const currentStoreId = window.sessionStorage.getItem("s_id") || window.localStorage.getItem("s_id")
-    const currentExpertId = window.sessionStorage.getItem("e_id") || window.localStorage.getItem("e_id")
+    const currentUserId = window.sessionStorage.getItem("id") ?? window.localStorage.getItem("id")
+    const currentUserName = window.sessionStorage.getItem("name") ?? window.localStorage.getItem("name")
+    const currentStoreId = window.sessionStorage.getItem("s_id") ?? window.localStorage.getItem("s_id")
+    const currentExpertId = window.sessionStorage.getItem("e_id") ?? window.localStorage.getItem("e_id")
     const [openProfile, setOpenProfile] = React.useState(false);
     const [openMenu, setOpenMenu] = React.useState(false);
 
@@ -117,9 +117,6 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       navigate("/users/" + currentUserId)
     }
 
-    // const handleSettings = () => {
-    //   navigate("/users/" + window.localStorage.id + "/settings")
-    // }
     const handleNotif = () => {
       navigate("/users/" + currentUserId + "/notifications")
     }
@@ -150,14 +147,6 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
       navigate("/home")
     }
 
-    // const handleFood = () => {
-    //   navigate("/food")
-    // }
-
-    const handleBack = () => {
-      navigate(-1); // Navigate to the previous page
-    };
-
     const handleFoodHistory = () => {
       navigate("/users/" + currentUserId + "/food-history")
     }
@@ -169,10 +158,7 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
     const handleArticleList = () => {
       navigate("/articles")
     }
-    // const handleFoodLocal = () => {
-    //   navigate("/food")
-    // }
-  
+
     const handleStats = () => {
       navigate("/stats")
     }
@@ -206,15 +192,11 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
             {name: "Aportes de usuarios", allowedRoles: ["Admin", "Tech", "Expert"], function: handleFoodEdit, icon: <FoodEditPendingCount width='28px' height= '28px'/>},
-            // {name: "Lista de alimentos", allowedRoles: ["Expert", "Admin", "Tech"], function: handleFoodLocal, icon: <FoodListIcon width={28} height= {28}/>},
-            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
             {name: "Nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
             {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
             {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={28} height= {28}/>},
             {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
-            // {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={28} height= {28}/>},
             {name: "Artículos de salud", allowedRoles: ["Core"], function: handleArticleList, icon: <ArticlesIcon width={28} height= {28}/>},
-            // {name: "Mis medidas", allowedRoles: ["Core"], function: handleStats, icon: <StatsIcon width={28} height= {28}/>}
           ]
         )
       }
@@ -223,7 +205,6 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
           [
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
-            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
             {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
             {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
             {name: "Mi catálogo", allowedRoles: ["Store"], function: handleStoreCatalogue, icon: <FoodListIcon width={28} height= {28}/>},
@@ -237,7 +218,6 @@ const TopBar: React.FC<{ onVisibilityChange: (visible: boolean) => void}> = ({ o
             {name: "Escanear alimento", allowedRoles: ["Core"], function: handleScan, icon: <ScannerIcon width={28} height= {28}/>},
             {name: "Buscar alimento", allowedRoles: ["Core"], function: handleSearch, icon: <SearchIcon width={28} height= {28}/>},
             {name: "Historial de alimentos", allowedRoles: ["Core"], function: handleFoodHistory, icon: <HistoryIcon width={28} height= {28}/>},
-            //{name: "Ver perfil", allowedRoles: ["Core"], function: handleProfile, icon: <AccountIcon width={28} height= {28}/>},
             {name: "Nutricionistas", allowedRoles: ["Core"], function: handleExperts, icon: <ExpertIcon width={28} height= {28}/>},
             {name: "Tiendas", allowedRoles: ["Core"], function: handleStores, icon: <StoreIcon width={28} height= {28}/>},
             {name: "Mis preferencias alimenticias", allowedRoles: ["Core"], function: handleFoodPrefs, icon: <FoodPrefsIcon width={28} height= {28}/>},

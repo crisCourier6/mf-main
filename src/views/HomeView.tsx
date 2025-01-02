@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 export const HomeView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
-  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id") || ""
-  const name = window.sessionStorage.getItem("name") || window.localStorage.getItem("name") || ""
+  const currentUserId = window.sessionStorage.getItem("id") ?? window.localStorage.getItem("id") ?? ""
+  const name = window.sessionStorage.getItem("name") ?? window.localStorage.getItem("name") ?? ""
   const handleAppBarVisibilityChange = (visible: boolean) => {
       setIsAppBarVisible(visible);
   };

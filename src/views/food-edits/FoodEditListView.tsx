@@ -10,8 +10,8 @@ import NavigateBack from '../../components/NavigateBack';
 
 export const FoodEditListView = () => {
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
-  const token = window.sessionStorage.getItem("token") || window.localStorage.getItem("token")
-  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+  const token = window.sessionStorage.getItem("token") ?? window.localStorage.getItem("token")
+  const currentUserId = window.sessionStorage.getItem("id") ?? window.localStorage.getItem("id")
   const [isReady, setIsReady] = useState(false);
   const checkRoleURL = "/users"
     const [canJudge, setCanJudge] = useState(false)

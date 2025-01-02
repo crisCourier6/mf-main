@@ -1,6 +1,5 @@
 import { Box, Grid, IconButton, Typography } from '@mui/material';
 import React, { useState } from 'react';
-
 import TopBar from '../../components/TopBar';
 import UserAccount from '../../microfrontends/accounts/UserAccount';
 import Loading from '../../components/Loading';
@@ -12,7 +11,7 @@ export const UserProfileView = () => {
   const navigate = useNavigate()
   const [isAppBarVisible, setIsAppBarVisible] = useState(true);
   const [isReady, setIsReady] = useState(false)
-  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
+  const currentUserId = window.sessionStorage.getItem("id") ?? window.localStorage.getItem("id")
   const handleReady = () => {
     setIsReady(true); // Set the state to true when ready
   };
@@ -31,7 +30,7 @@ export const UserProfileView = () => {
       <TopBar onVisibilityChange={handleAppBarVisibilityChange}></TopBar> 
       {!isReady 
         ? <Loading/>
-      : <>
+      :
       <Box 
       sx={{
           display: "flex",
@@ -80,8 +79,6 @@ export const UserProfileView = () => {
             </IconButton>
           </Box>
           </Box>
-         
-      </> 
       }
        <UserAccount isAppBarVisible={isAppBarVisible} onReady={handleReady}/> 
     </Grid>

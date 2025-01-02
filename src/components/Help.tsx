@@ -7,7 +7,6 @@ import SearchIcon from '../svgs/SearchIcon';
 import FoodPrefsIcon from '../svgs/FoodPrefsIcon';
 import ExpertIcon from '../svgs/ExpertIcon';
 import StoreIcon from '../svgs/StoreIcon';
-// import FoodListIcon from '../svgs/FoodListIcon';
 import AccountIcon from '../svgs/AccountIcon';
 import HistoryIcon from '../svgs/HistoryIcon';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,19 +16,10 @@ import StatsIcon from '../svgs/StatsIcon';
 import FoodListIcon from '../svgs/FoodListIcon';
 import DiaryIcon from '../svgs/DiaryIcon';
 
-type Option = {
-  name:string,
-  allowedRoles: string[]
-  function: () => void
-  icon: any
-}
-
 export const Help:React.FC<{isAppBarVisible:boolean}>= ({isAppBarVisible}) => {
-  const navigate = useNavigate()
-  const [allDone, setAllDone] = useState(true)
-  const currentUserId = window.sessionStorage.getItem("id") || window.localStorage.getItem("id")
-  const currentStoreId = window.sessionStorage.getItem("s_id") || window.localStorage.getItem("s_id")
-  const currentExpertId = window.sessionStorage.getItem("e_id") || window.localStorage.getItem("e_id")
+  const allDone = true
+  const currentStoreId = window.sessionStorage.getItem("s_id") ?? window.localStorage.getItem("s_id")
+  const currentExpertId = window.sessionStorage.getItem("e_id") ?? window.localStorage.getItem("e_id")
 
   
     return (allDone
